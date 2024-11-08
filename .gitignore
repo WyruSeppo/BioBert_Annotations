@@ -1,3 +1,6 @@
-.venv/
+.venv/Include/
+.venv/Lib/
+.venv/Scripts/
+.venv/share/
 *.pyc
 __pycache__/
