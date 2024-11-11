@@ -66,11 +66,12 @@ def annotate_tsv(tsv_file):
     df = read_tsv(tsv_file)
     annotated_data = []
     counter = 0
-    total = len(df)
+    total = 0
 
     if df is not None:
+        total = len(df)
         for protein_id in df.iloc[:, 1]:
-            print("\r" + str(counter // total) + "% " + str(counter) + "/" + str(total));
+            print("\r" + str(counter / total) + "% " + str(counter) + "/" + str(total));
             counter += 1
             protein_name, function, pfamID = get_uniprot_annotation(protein_id)
             pfamAnnotation = get_pfam_annotation(pfamID)
