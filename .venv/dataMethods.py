@@ -13,6 +13,7 @@ def read_tsv(file_path):
 
 def get_uniprot_annotation(protein_id):
     url = f"https://www.uniprot.org/uniprotkb/{protein_id}.txt"
+    print(url)
     try:
         response = requests.get(url)
     except Exception as e:
@@ -24,12 +25,18 @@ def get_uniprot_annotation(protein_id):
         protein_name = None
         function = None
         pfam = None
+        endOfFunction = True
         
         for line in text_data.splitlines():
             if line.startswith("ID"):
                 protein_name = line.split()[1]
             elif line.startswith("CC   -!- FUNCTION:"):
+                endOfFunction = False
                 function = line[len("CC   -!- FUNCTION:"):].strip()
+            elif line.__contains__("-!-") and not endOfFunction:
+                endOfFunction = True
+            elif line.startswith("CC") and  not endOfFunction:
+                function += line #remove whitespace and stuff at the end
             elif line.startswith("DR   Pfam;"):
                 pfam = line.split()[2].removesuffix(';')
 
@@ -52,11 +59,10 @@ def get_pfam_annotation(protein_id):
         description_text = None
         jsonData = response.json()
 
-        if jsonData['metadata']['description'] and isinstance(jsonData['metadata']['description'], list) and len(jsonData['metadata']['description']) > 0:
+        if jsonData['metadata']['description'] and isinstance(jsonData['metadata']['description'], list) and jsonData['metadata']['description'] != None and len(jsonData['metadata']['description']) > 0:
             description_text = jsonData['metadata']['description'][0]['text']
             description_text = description_text.removesuffix('</p>')
             description_text = description_text.removeprefix('<p>')
-            
         return description_text
     else:
         return None
