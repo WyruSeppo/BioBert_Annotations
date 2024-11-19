@@ -3,9 +3,10 @@
 This project was set up with python 3.11.9 and Visual Studio and these will need to be installed for this guide to work.
 
 ## Setting up the environment
-When Python and Visual Studio are installed, we will need to set up a python environment and install the libraries we will use.\
+When Python and Visual Studio Code are installed, we will need to set up a python environment and install the libraries we will use.
+In Visual Studio Code, open the folder that contains repository.
+In the terminal (Str+ö or View/Terminal) type python -m venv .venv
 
-When you clone your repository, you can set up the python environment by running python -m venv .venv
+This sets up the python environment.
 
-, activating the environment, and using pip install -r requirements.txt.
-This will install the necesarry frameworks/libraries for this project.
+After that, install the necesary libraries by typeing pip install -r requirements.txt in the terminal.
