@@ -4,3 +4,4 @@
 .venv/share/
 *.pyc
 __pycache__/
+.venv/pyenv.cfg
