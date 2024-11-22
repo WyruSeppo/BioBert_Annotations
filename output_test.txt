@@ -1,0 +1,11 @@
+Protein_ID	Pfam_ID	Protein_Name	Unitprot_Function	Pfam_Description
+A0A6L8PTH4	PF13761	A0A6L8PTH4_BACAN		This domain is often found at the C-terminus of proteins containing Pfam:PF03435.
+J8AIL7	PF00366	J8AIL7_BACCE	One of the primary rRNA binding proteins, it binds	
+J8D3U1	PF00366	J8D3U1_BACCE	One of the primary rRNA binding proteins, it binds	
+A0A9W5VPA7	PF00366	A0A9W5VPA7_BACCE	One of the primary rRNA binding proteins, it binds	
+A0A9W5QMD0	PF00366	A0A9W5QMD0_BACCE	One of the primary rRNA binding proteins, it binds	
+A0A9W5KES5	PF00366	A0A9W5KES5_BACC8	One of the primary rRNA binding proteins, it binds	
+A0A9W5KDP4	PF00366	A0A9W5KDP4_BACC6	One of the primary rRNA binding proteins, it binds	
+A0A9W5PP01	PF00366	A0A9W5PP01_BACCE	One of the primary rRNA binding proteins, it binds	
+A0A9W5KT84	PF00366	A0A9W5KT84_BACCE	One of the primary rRNA binding proteins, it binds	
+A0A9W5VVH8	PF00366	A0A9W5VVH8_BACCE	One of the primary rRNA binding proteins, it binds
