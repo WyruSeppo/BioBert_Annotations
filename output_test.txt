@@ -1,11 +1,11 @@
-Protein_ID	Pfam_ID	Protein_Name	Unitprot_Function	Pfam_Description
-A0A6L8PTH4	PF13761	A0A6L8PTH4_BACAN		This domain is often found at the C-terminus of proteins containing Pfam:PF03435.
-J8AIL7	PF00366	J8AIL7_BACCE	One of the primary rRNA binding proteins, it binds	
-J8D3U1	PF00366	J8D3U1_BACCE	One of the primary rRNA binding proteins, it binds	
-A0A9W5VPA7	PF00366	A0A9W5VPA7_BACCE	One of the primary rRNA binding proteins, it binds	
-A0A9W5QMD0	PF00366	A0A9W5QMD0_BACCE	One of the primary rRNA binding proteins, it binds	
-A0A9W5KES5	PF00366	A0A9W5KES5_BACC8	One of the primary rRNA binding proteins, it binds	
-A0A9W5KDP4	PF00366	A0A9W5KDP4_BACC6	One of the primary rRNA binding proteins, it binds	
-A0A9W5PP01	PF00366	A0A9W5PP01_BACCE	One of the primary rRNA binding proteins, it binds	
-A0A9W5KT84	PF00366	A0A9W5KT84_BACCE	One of the primary rRNA binding proteins, it binds	
-A0A9W5VVH8	PF00366	A0A9W5VVH8_BACCE	One of the primary rRNA binding proteins, it binds
+Protein_ID	Pfam_ID	Protein_Name	Unitprot_Function	Pfam_Description	RefSeq	Entry	Entry_Name	Gene_Names	Organism
+A0A6L8PTH4	PF13761	DUF4166 domain-containing protein		This domain is often found at the C-terminus of proteins containing Pfam:PF03435.	WP_000002633.1	A0A6L8PTH4	A0A6L8PTH4_BACAN	GBAA_1814	Bacillus anthracis
+J8AIL7	PF00366	Small ribosomal subunit protein uS17	One of the primary rRNA binding proteins, it bindsCC       specifically to the 5'-end of 16S ribosomal RNA. {ECO:0000256|HAMAP-CC       Rule:MF_01345}.		WP_000004106.1	J8AIL7	J8AIL7_BACCE	rpsQ IEE_05004	Bacillus cereus BAG5X1-1
+J8D3U1	PF00366	Small ribosomal subunit protein uS17	One of the primary rRNA binding proteins, it bindsCC       specifically to the 5'-end of 16S ribosomal RNA. {ECO:0000256|HAMAP-CC       Rule:MF_01345}.		WP_000004106.1	J8D3U1	J8D3U1_BACCE	rpsQ IGC_05738	Bacillus cereus HuA4-10
+A0A9W5VPA7	PF00366	Small ribosomal subunit protein uS17	One of the primary rRNA binding proteins, it bindsCC       specifically to the 5'-end of 16S ribosomal RNA. {ECO:0000256|HAMAP-CC       Rule:MF_01345}.		WP_000004106.1	A0A9W5VPA7	A0A9W5VPA7_BACCE	rpsQ IGM_00042	Bacillus cereus HuB4-4
+A0A9W5QMD0	PF00366	Small ribosomal subunit protein uS17	One of the primary rRNA binding proteins, it bindsCC       specifically to the 5'-end of 16S ribosomal RNA. {ECO:0000256|HAMAP-CC       Rule:MF_01345}.		WP_000004106.1	A0A9W5QMD0	A0A9W5QMD0_BACCE	rpsQ IGU_06301	Bacillus cereus ISP2954
+A0A9W5KES5	PF00366	Small ribosomal subunit protein uS17	One of the primary rRNA binding proteins, it bindsCC       specifically to the 5'-end of 16S ribosomal RNA. {ECO:0000256|HAMAP-CC       Rule:MF_01345}.		WP_000004106.1	A0A9W5KES5	A0A9W5KES5_BACC8	rpsQ IIA_00041	Bacillus cereus (strain VD014)
+A0A9W5KDP4	PF00366	Small ribosomal subunit protein uS17	One of the primary rRNA binding proteins, it bindsCC       specifically to the 5'-end of 16S ribosomal RNA. {ECO:0000256|HAMAP-CC       Rule:MF_01345}.		WP_000004106.1	A0A9W5KDP4	A0A9W5KDP4_BACC6	rpsQ IIE_05981	Bacillus cereus (strain VD045)
+A0A9W5PP01	PF00366	Small ribosomal subunit protein uS17	One of the primary rRNA binding proteins, it bindsCC       specifically to the 5'-end of 16S ribosomal RNA. {ECO:0000256|HAMAP-CC       Rule:MF_01345}.		WP_000004106.1	A0A9W5PP01	A0A9W5PP01_BACCE	rpsQ IIU_04449	Bacillus cereus VD133
+A0A9W5KT84	PF00366	Small ribosomal subunit protein uS17	One of the primary rRNA binding proteins, it bindsCC       specifically to the 5'-end of 16S ribosomal RNA. {ECO:0000256|HAMAP-CC       Rule:MF_01345}.		WP_000004106.1	A0A9W5KT84	A0A9W5KT84_BACCE	rpsQ IK5_04877	Bacillus cereus VD154
+A0A9W5VVH8	PF00366	Small ribosomal subunit protein uS17	One of the primary rRNA binding proteins, it bindsCC       specifically to the 5'-end of 16S ribosomal RNA. {ECO:0000256|HAMAP-CC       Rule:MF_01345}.		WP_000004106.1	A0A9W5VVH8	A0A9W5VVH8_BACCE	rpsQ IKC_05888	Bacillus cereus VD184

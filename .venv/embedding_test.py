@@ -12,7 +12,7 @@ sentences = [
     "Protein structure prediction is challenging."
 ]
 
-# Tokenize sentences
+# Tokenize sentences. maxlength 512?
 inputs = tokenizer(sentences, return_tensors="pt", padding=True, truncation=True, max_length=128)
 
 # Forward pass through the model
@@ -22,8 +22,8 @@ with torch.no_grad():
 # Extract embeddings (CLS token representations)
 embeddings = outputs.last_hidden_state[:, 0, :]
 
-# Convert to numpy (optional)
+# Convert to numpy
 embeddings_numpy = embeddings.numpy()
 
-print(embeddings_numpy.shape)  # Shape: (num_sentences, hidden_size)
+print(embeddings_numpy.shape) 
 print(embeddings_numpy[0])
