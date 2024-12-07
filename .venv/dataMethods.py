@@ -161,3 +161,35 @@ def evaluateData(annotationData):
 def getAnnotations(inputFilePath, outputFilePath):
     annotated_df = annotate_tsv(inputFilePath)
     annotated_df.to_csv(outputFilePath, sep='\t', index=False)
+    
+    
+def getUniProtConversion(ffrom,to,annotationData):
+    
+    ids = ".".join([x.refSeqAccession for x in annotationData])
+    url = "https://rest.uniprot.org/idmapping/run"
+    data = {
+        "ids": ids,
+        "from": ffrom,
+        "to": to
+    }
+
+    response = requests.post(url, data=data)
+
+    #error handling
+    print(response.status_code)
+    jobId = response.json()['jobId']
+    jobDone = False
+    
+    while(not jobDone):
+        url = "https://rest.uniprot.org/idmapping/status/" + str(jobId)
+        print(url)
+        response = requests.post(url)
+        print("heres the response")
+        print(response.status_code)
+        print(response.json())
+        #status = response.json()['jobStatus']
+        status = "FINISHED"
+        print(status)
+        jobDone = status == "FINISHED"
+
+    #keep fetching the status until it is done
