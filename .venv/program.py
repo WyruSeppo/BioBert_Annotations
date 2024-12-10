@@ -55,5 +55,7 @@ if getUniProtEmbeddings:
  
 #cluster the encodings data
 
+#eine änderung
+
 #visualize encoding data
 print("BioBert Annotation Similarity v1 End") 
