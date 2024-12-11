@@ -10,28 +10,29 @@ annotationFile =["C:\\Users\\SebastianRossboeck\\Desktop\\BioBert4\\output_test.
 inputFile = ""
 annotationData = []
 fastaFile = "C:\\Users\\SebastianRossboeck\\Desktop\\BioBert4\\.venv\\spore-formers.faa"
+refSeqIds = []
 annotationData_new = []
 
 print("BioBert Annotation Similarity v1 Start") 
 
-#load FASTA file
-#for record in SeqIO.parse(fastaFile, "fasta"):
-#    annotationData_new.append(AnnotationData("","","","","",record.id,"","","","","","",""))
-
-#get UniProt IDs from RefSeq
-#test = getUniProtConversion("RefSeq_Protein","UniProtKB",annotationData_new)
-
-
-#load or get AnnotationData
 if annotationFile != "" and not getAnnotationsFromDB:
-    print("loading annotationdata from file")
-    annotationData = loadAnnotations(annotationFile)
+    #load FASTA file
+    for record in SeqIO.parse(fastaFile, "fasta"):
+        refSeqIds.append(record.id)
 
-#no input file was given: get Annotations from API
-if getAnnotationsFromDB and inputFile != "":
-    print("fetching annotations from api")
-    getAnnotations("C:\\Users\\SebastianRossboeck\\Desktop\\BioBert4\\.venv\\spore_formers_proteinIds_test", "C:\\Users\\SebastianRossboeck\\Desktop\\BioBert4\\output_test.txt")
-    
+    #get UniProt IDs from RefSeq
+    annotationData = getUniProtConversion("RefSeq_Protein","UniProtKB",refSeqIds)
+
+    #load or get AnnotationData
+    if annotationFile != "" and not getAnnotationsFromDB:
+        print("loading annotationdata from file")
+        annotationData = loadAnnotations(annotationFile)
+else:
+    #no input file was given: get Annotations from API
+    if getAnnotationsFromDB and inputFile != "":
+        print("fetching annotations from api")
+        getAnnotations("C:\\Users\\SebastianRossboeck\\Desktop\\BioBert4\\.venv\\spore_formers_proteinIds_test", "C:\\Users\\SebastianRossboeck\\Desktop\\BioBert4\\output_test.txt")
+        
 for annotation in annotationData:
     print(annotation.pfam_description)
 
@@ -53,9 +54,9 @@ if getUniProtEmbeddings:
         #not one by one
         protein.uniprot_embedding = ""
  
-#cluster the encodings data
+ 
 
-#eine änderung
+#cluster the encodings data
 
 #visualize encoding data
 print("BioBert Annotation Similarity v1 End") 

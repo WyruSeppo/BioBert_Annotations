@@ -1,4 +1,5 @@
 from Bio import SeqIO
+import time
 import requests
 import pandas as pd
 from classes import *
@@ -163,9 +164,9 @@ def getAnnotations(inputFilePath, outputFilePath):
     annotated_df.to_csv(outputFilePath, sep='\t', index=False)
     
     
-def getUniProtConversion(ffrom,to,annotationData):
+def getUniProtConversion(ffrom,to,refseqIds):
     
-    ids = ".".join([x.refSeqAccession for x in annotationData])
+    ids = ",".join(refseqIds)
     url = "https://rest.uniprot.org/idmapping/run"
     data = {
         "ids": ids,
@@ -182,14 +183,67 @@ def getUniProtConversion(ffrom,to,annotationData):
     
     while(not jobDone):
         url = "https://rest.uniprot.org/idmapping/status/" + str(jobId)
-        print(url)
-        response = requests.post(url)
-        print("heres the response")
-        print(response.status_code)
-        print(response.json())
-        #status = response.json()['jobStatus']
-        status = "FINISHED"
-        print(status)
-        jobDone = status == "FINISHED"
+        response = requests.get(url)
+        status = response.json().get('jobStatus')
+        
+        if(status):
+            print(status)
+            jobDone = status == "FINISHED"
+        else:
+            jobDone = True
+        # Wait two minutes
+        time.sleep(60)
 
-    #keep fetching the status until it is done
+
+    #get all the results form idmapping job
+
+    print("job done")
+    #put UniprotIds into annotationData 
+    result = []
+    #for entry in response.json()["results"]:
+    #   result.append(AnnotationData("","",entry["to"],"","",entry["from"],"","","","","","",""))
+    
+    # Base URL for the UniProt API
+    base_url = "https://rest.uniprot.org/idmapping/results/"
+
+    # Your job ID
+    job_id = jobId
+
+    # Pagination settings
+    page_size = 500  # Number of results per page
+
+    # Collect all results
+    all_results = []
+    url = f"{base_url}{job_id}"
+
+    while url:
+        # Make the request
+        response = requests.get(url)
+        response.raise_for_status()
+        
+        # Parse the JSON response
+        data = response.json()
+        all_results.extend(data.get("results", []))
+        
+        # Get the next page URL from the headers
+        url = response.headers.get("Link")
+        if url:
+            # The "Link" header may contain multiple URLs, ensure you parse the `rel="next"` URL
+            links = [link.strip() for link in url.split(",")]
+            next_link = [link for link in links if 'rel="next"' in link]
+            if next_link:
+                # Extract the actual URL (it will be enclosed in < >)
+                url = next_link[0].split(";")[0].strip("<>")
+            else:
+                url = None  # No "next" link available
+        else:
+            url = None  # No "Link" header
+
+        # Use the collected results
+        print(f"Fetched {len(all_results)} results")
+        
+    for entry in all_results:
+       result.append(AnnotationData("","",entry["to"],"","",entry["from"],"","","","","","",""))
+    
+    
+    return result    

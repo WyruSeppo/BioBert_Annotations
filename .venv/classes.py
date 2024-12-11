@@ -16,7 +16,20 @@ class AnnotationData:
         self.pfam_description = pfam_description
         
     def __repr__(self):
-        return f"AnnotationData(id={self.id}, pfam_id='{self.pfam_id}', uniprot_id='{self.uniprot_id}')"
+        return (f"AnnotationData("
+                f"id={self.id}, "
+                f"pfam_id='{self.pfam_id}', "
+                f"uniprot_id='{self.uniprot_id}', "
+                f"pfam_embedding={self.pfam_embedding}, "
+                f"uniprot_embedding={self.uniprot_embedding}, "
+                f"refSeqAccession='{self.refSeqAccession}', "
+                f"entry='{self.entry}', "
+                f"entry_name='{self.entry_name}', "
+                f"protein_names='{self.protein_names}', "
+                f"gene_names='{self.gene_names}', "
+                f"organism='{self.organism}', "
+                f"pfam_description='{self.pfam_description}', "
+                f"uniprot_function='{self.uniprot_function}')")
 
 class EvaluatedData:
     def __init__(self):
