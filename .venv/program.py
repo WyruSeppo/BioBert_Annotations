@@ -44,14 +44,14 @@ else :
     except Exception as e:
         logger.error(f"Error loading from fasta file: {e}")
     
+    #convert to uniprot and initialize list of AnnotationData objects
     try:
-        #convert to uniprot and initialize list of AnnotationData objects
         annotationData = getUniProtConversion("RefSeq_Protein","UniProtKB",ref_seq_ids)
     except Exception as e:
         logger.error(f"Error loading conversion from uniprot api: {e}")
         
     #get Annotations
-    #this creates a file with the annotationdatawe receive form the apis
+    #this automatically creates a file with the annotationdata we receive form the apis
     try:
         annotationData = getAnnotations(annotationData, CONFIG["annotation_file_output"])
     except Exception as e:
@@ -60,9 +60,7 @@ else :
 
 #3 Data Eval on annotations
 logger.info("Evaluate Data")
-evaluatedData = evaluateData(annotationData)
-#evaluatedData.print_data()
-writeToFile(evaluatedData.generateString(), CONFIG["data_eval_output"])
+writeToFile(evaluateData(annotationData).generateString(), CONFIG["data_eval_output"])
 
 
 #4.1 get Encodings for pfam-description

@@ -125,6 +125,5 @@ def configIsValid(config):
     return True
 
 def writeToFile(input, outputfile):
-    f = open(outputfile, "w")
-    f.write(input)
-    f.close()
+    with open(outputfile, "w") as f:
+        f.write(input)

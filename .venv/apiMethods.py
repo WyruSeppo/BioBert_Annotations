@@ -11,7 +11,6 @@ logger = logging.getLogger("BioBERT")
 
 def get_uniprot_annotation(protein_id):
     url = f"https://www.uniprot.org/uniprotkb/{protein_id}.txt"
-    print(url)
     try:
         response = requests.get(url)
     except Exception as e:
@@ -110,19 +109,15 @@ def annotate_data(annotationData, showProgress = False):
         protein_name, function, pfamID = get_uniprot_annotation(entry.uniprot_id)
         pfamAnnotation = get_pfam_annotation(pfamID)
 
-        entry.pfam_id = pfamID if pfamID not in (None, "") else "None"
-        entry.protein_names = protein_name if protein_name not in (None, "") else "None"
-        entry.uniprot_function = function if function not in (None, "") else "None"
-        entry.pfam_description = pfamAnnotation if pfamAnnotation not in (None, "") else "None"
+        entry.pfam_id = pfamID or "None"
+        entry.protein_names = protein_name or "None"
+        entry.uniprot_function = function or "None"
+        entry.pfam_description = pfamAnnotation or "None"
 
-        entry.id = "None"
-        entry.pfam_embedding = "None"
-        entry.uniprot_embedding = "None"
-        entry.entry = "None"
-        entry.entry_name = "None"
-        entry.gene_names = "None"
-        entry.organism = "None"
-        
+        # Set other attributes to "None" if needed
+        for attr in ['id', 'pfam_embedding', 'uniprot_embedding', 'entry', 'entry_name', 'gene_names', 'organism']:
+            setattr(entry, attr, "None")
+
         counter += 1
         
     return annotationData
