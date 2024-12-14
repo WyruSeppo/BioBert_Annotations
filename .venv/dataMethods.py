@@ -3,6 +3,10 @@ import time
 import requests
 import pandas as pd
 from classes import *
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger("BioBERT")
 
 def read_tsv(file_path):
     try:
@@ -102,28 +106,89 @@ def annotate_tsv(tsv_file):
             #print((protein_id or 'NA') + " " + (pfamID or 'NA') + " " + (protein_name or 'NA') + " " + (function or 'NA') + " " + (pfamAnnotation or 'NA'))
     return pd.DataFrame(annotated_data)
 
-def loadAnnotations(filePaths):
+
+
+def annotate_data(annotationData, showProgress = False):
+    counter = 0
+    total = len(annotationData)
+
+    for entry in annotationData:
+        print("\r" + str(counter / total) + "% " + str(counter) + "/" + str(total))
+        
+        protein_name, function, pfamID = get_uniprot_annotation(entry.uniprot_id)
+        pfamAnnotation = get_pfam_annotation(pfamID)
+
+        entry.pfam_id = pfamID if pfamID not in (None, "") else "None"
+        entry.protein_names = protein_name if protein_name not in (None, "") else "None"
+        entry.uniprot_function = function if function not in (None, "") else "None"
+        entry.pfam_description = pfamAnnotation if pfamAnnotation not in (None, "") else "None"
+
+        entry.id = "None"
+        entry.pfam_embedding = "None"
+        entry.uniprot_embedding = "None"
+        entry.entry = "None"
+        entry.entry_name = "None"
+        entry.gene_names = "None"
+        entry.organism = "None"
+        
+        counter += 1
+        
+        if showProgress:
+            print((protein_id or 'NA') + " " + (pfamID or 'NA') + " " + (protein_name or 'NA') + " " + (function or 'NA') + " " + (pfamAnnotation or 'NA'))
+    
+    return annotationData
+
+def loadAnnotations(filePath):
     result = []
 
-    # Open the file in read mode
-    for filePath in filePaths:
-        with open(filePath, 'r') as file:
-            # Read each line in the file
-            #Protein_ID	Pfam_ID	Protein_Name	Unitprot_Function	Pfam_Description	RefSeq	Entry	Entry_Name	Gene_Names	Organism
-            for line in file:
-                proteinId = line.split("\t")[0]
-                pfamId = line.split("\t")[1]
-                proteinName = line.split("\t")[2]
-                uniprot_function = line.split("\t")[3]
-                pfam_description = line.split("\t")[4]
-                refSeqAccession = line.split("\t")[5]
-                entry = line.split("\t")[6]
-                entryName = line.split("\t")[7]
-                geneNames = line.split("\t")[8]
-                organism = line.split("\t")[9]
-                result.append(AnnotationData(proteinId,pfamId,"","","", refSeqAccession, entry, entryName, proteinName, geneNames, organism, pfam_description,uniprot_function))
-    
-    return result[1:]#remove the first entry (heading)
+    with open(filePath, 'r') as file:
+        
+        skipFirstLine = True
+            
+        for line in file:
+            
+            if skipFirstLine:
+                skipFirstLine = False
+                continue
+            
+            # Split the line by tabs
+            columns = line.strip().split('\t')
+            
+            # Extract each field based on its position
+            proteinId = columns[0]
+            pfamId = columns[1]
+            uniprotId = columns[2]
+            pfam_embedding = columns[3]
+            uniprot_embedding = columns[4]
+            refSeqAccession = columns[5]
+            entry = columns[6]
+            entryName = columns[7]
+            proteinName = columns[8]
+            geneNames = columns[9]
+            organism = columns[10]
+            pfam_description = columns[11]
+            uniprot_function = columns[12] if len(columns) > 12 else ""
+
+            # Create an AnnotationData object and append it to the result list
+            result.append(
+                AnnotationData(
+                    id=proteinId,
+                    pfam_id=pfamId,
+                    uniprot_id=uniprotId,
+                    pfam_embedding=pfam_embedding,
+                    uniprot_embedding=uniprot_embedding,
+                    refSeqAccession=refSeqAccession,
+                    entry=entry,
+                    entryName=entryName,
+                    proteinNames=proteinName,
+                    geneNames=geneNames,
+                    organism=organism,
+                    pfam_description=pfam_description,
+                    uniprot_function=uniprot_function
+                )
+            )
+
+    return result
 
 def evaluateData(annotationData):
     data = EvaluatedData()
@@ -159,13 +224,18 @@ def evaluateData(annotationData):
     
     return data
 
-def getAnnotations(inputFilePath, outputFilePath):
-    annotated_df = annotate_tsv(inputFilePath)
-    annotated_df.to_csv(outputFilePath, sep='\t', index=False)
+def getAnnotations(annotationData, outputFilePath):
+    annotationData = annotate_data(annotationData)
+    exportData = pd.DataFrame([obj.to_dict() for obj in annotationData])
+    exportData.to_csv(outputFilePath, sep='\t', index=False)
+    return annotationData
     
+def saveAnnotations(annotationData, outputFilePath):
+    exportData = pd.DataFrame([obj.to_dict() for obj in annotationData])
+    exportData.to_csv(outputFilePath, sep='\t', index=False)
     
 def getUniProtConversion(ffrom,to,refseqIds):
-    
+
     ids = ",".join(refseqIds)
     url = "https://rest.uniprot.org/idmapping/run"
     data = {
@@ -247,3 +317,17 @@ def getUniProtConversion(ffrom,to,refseqIds):
     
     
     return result    
+
+def load_ids_fasta(fasta_file):
+    logger.info(f"Loading FASTA file: {fasta_file}")
+    ref_seq_ids = [record.id for record in SeqIO.parse(fasta_file, "fasta")]
+    return ref_seq_ids
+
+def configIsValid(config):
+    #check config for things
+    return True
+
+def writeToFile(input, outputfile):
+    f = open(outputfile, "w")
+    f.write(input)
+    f.close()

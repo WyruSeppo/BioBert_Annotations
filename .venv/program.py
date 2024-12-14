@@ -1,60 +1,85 @@
 from dataMethods import *
 from bertMethods import *
+import logging
 
-#init settings
-getPfamEmbeddings = True
-getUniProtEmbeddings = False
-outputPath = ""
-getAnnotationsFromDB = False
-annotationFile =["C:\\Users\\SebastianRossboeck\\Desktop\\BioBert4\\output_test.txt"]
-inputFile = ""
-annotationData = []
-fastaFile = "C:\\Users\\SebastianRossboeck\\Desktop\\BioBert4\\.venv\\spore-formers.faa"
-refSeqIds = []
-annotationData_new = []
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger("BioBERT")
 
-print("BioBert Annotation Similarity v1 Start") 
+CONFIG = {
+    "fasta_file": "C:\\Users\\SebastianRossboeck\\Desktop\\BioBert4\\.venv\\spore-formers_test.faa",
+    "annotation_file_input": "C:\\Users\\SebastianRossboeck\\Desktop\\BioBert4\\annotationData_output_test.txt",
+    "annotation_file_output": "C:\\Users\\SebastianRossboeck\\Desktop\\BioBert4\\annotationData_output_test.txt",
+    "annotation_embedding_file_output": "C:\\Users\\SebastianRossboeck\\Desktop\\BioBert4\\annotationData_embedding_output_test.txt",
+    "data_eval_output": "C:\\Users\\SebastianRossboeck\\Desktop\\BioBert4\\data_eval_output_test.txt",
+    "loadAnnotationsFromFile":True,
+    "getPfamEmbeddings":False,
+    "getUniProtEmbeddings":False,
+    "model":"dmis-lab/biobert-base-cased-v1.1"
+}
 
-if annotationFile != "" and not getAnnotationsFromDB:
-    #load FASTA file
-    for record in SeqIO.parse(fastaFile, "fasta"):
-        refSeqIds.append(record.id)
+logger.info("BioBert Annotation Similarity v1 Start") 
 
-    #get UniProt IDs from RefSeq
-    annotationData = getUniProtConversion("RefSeq_Protein","UniProtKB",refSeqIds)
+#1 evaluate the config to catch invlid inputs early
+if configIsValid(CONFIG) == False:
+    print("CONFIG is not valid")
+    quit()
 
-    #load or get AnnotationData
-    if annotationFile != "" and not getAnnotationsFromDB:
-        print("loading annotationdata from file")
-        annotationData = loadAnnotations(annotationFile)
-else:
-    #no input file was given: get Annotations from API
-    if getAnnotationsFromDB and inputFile != "":
-        print("fetching annotations from api")
-        getAnnotations("C:\\Users\\SebastianRossboeck\\Desktop\\BioBert4\\.venv\\spore_formers_proteinIds_test", "C:\\Users\\SebastianRossboeck\\Desktop\\BioBert4\\output_test.txt")
-        
-for annotation in annotationData:
-    print(annotation.pfam_description)
 
-#Data Eval on annotations
-evaluatedData = evaluateData(annotationData)
-evaluatedData.print_data()
-#save to outputPath
-
-#get Encodings for pfam-description
-if getPfamEmbeddings:
-    annotationData = getEmbeddings(annotationData)
+#2 if there exists a file with annotationData: load it, otherwise fetch annotations from Uniprot/Pfam
+if CONFIG["loadAnnotationsFromFile"]:
+    #load annotationData from file
+    logger.info("loading annotationdata from file")
+    try:
+        annotationData = loadAnnotations(CONFIG["annotation_file_input"])
+    except Exception as e:
+        logger.error(f"Error fetching annotations from file: {e}")
+        quit()
+else :
+    logger.info("fetching annotationdata from uniprot/pfam api")
     
-for x in annotationData:
-    print(x.pfam_embedding)
+    #read refSeqIds from fasta file
+    try:
+        ref_seq_ids = load_ids_fasta(CONFIG["fasta_file"])
+    except Exception as e:
+        logger.error(f"Error loading from fasta file: {e}")
+    
+    try:
+        #convert to uniprot and initialize list of AnnotationData objects
+        annotationData = getUniProtConversion("RefSeq_Protein","UniProtKB",ref_seq_ids)
+    except Exception as e:
+        logger.error(f"Error loading conversion from uniprot api: {e}")
+        
+    #get Annotations
+    #this creates a file with the annotationdatawe receive form the apis
+    try:
+        annotationData = getAnnotations(annotationData, CONFIG["annotation_file_output"])
+    except Exception as e:
+        logger.error(f"Error getting annotations from api: {e}")
 
-#get Encodings for uniprot-function
-if getUniProtEmbeddings:
-    for protein in annotationData:
-        #not one by one
-        protein.uniprot_embedding = ""
+
+#3 Data Eval on annotations
+logger.info("Evaluate Data")
+evaluatedData = evaluateData(annotationData)
+#evaluatedData.print_data()
+writeToFile(evaluatedData.generateString(), CONFIG["data_eval_output"])
+
+
+#4.1 get Encodings for pfam-description
+logger.info("Create Embeddings")
+if CONFIG["getPfamEmbeddings"]:
+    annotationData = getEmbeddings(annotationData, CONFIG["model"],"pfam")
+    
+
+#4.2 get Encodings for uniprot-function
+if CONFIG["getUniProtEmbeddings"]:
+    annotationData = getEmbeddings(annotationData, CONFIG["model"],"uniprot")
  
+#If we created new embeddings: save the data to file
+if CONFIG["getUniProtEmbeddings"] or CONFIG["getPfamEmbeddings"]:
+    saveAnnotations(annotationData, CONFIG["annotation_embedding_file_output"])
  
+
+
 
 #cluster the encodings data
 

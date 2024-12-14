@@ -21,6 +21,11 @@ def getEmbeddings(annotationData, modelName = "dmis-lab/biobert-base-cased-v1.1"
 
         # Convert to numpy
         embeddings_numpy = embeddings.numpy()
-        annotation.pfam_embedding = embeddings_numpy[0]
+        
+        if mode == "pfam":
+            annotation.pfam_embedding = embeddings_numpy[0]
+            
+        if mode == "uniprot":
+            annotation.uniprot_embedding = embeddings_numpy[0]
         
     return annotationData

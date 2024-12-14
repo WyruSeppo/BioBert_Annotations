@@ -30,6 +30,23 @@ class AnnotationData:
                 f"organism='{self.organism}', "
                 f"pfam_description='{self.pfam_description}', "
                 f"uniprot_function='{self.uniprot_function}')")
+        
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "pfam_id": self.pfam_id,
+            "uniprot_id": self.uniprot_id,
+            "pfam_embedding": self.pfam_embedding,
+            "uniprot_embedding": self.uniprot_embedding,
+            "refSeqAccession": self.refSeqAccession,
+            "entry": self.entry,
+            "entry_name": self.entry_name,
+            "protein_names": self.protein_names,
+            "gene_names": self.gene_names,
+            "organism": self.organism,
+            "pfam_description": self.pfam_description,
+            "uniprot_function": self.uniprot_function,
+        }
 
 class EvaluatedData:
     def __init__(self):
@@ -84,4 +101,28 @@ class EvaluatedData:
             f"pfam_annotation_missing_amount={self.pfam_annotation_missing_amount}, "
             f"pfam_annotation_missing_percent={self.pfam_annotation_missing_percent}"
             f")"
+        )
+        
+    def generateString(self):
+        return (
+            f"Evaluated Data:\n"
+            f"  Number of Sequences: {self.no_sequences}\n"
+            f"  UniProt Annotations:\n"
+            f"    Amount: {self.uniprot_annotation_amount}\n"
+            f"    Annotation-Length (Min/Max/Avg): "
+            f"{self.uniprot_annotation_length_min} / "
+            f"{self.uniprot_annotation_length_max} / "
+            f"{self.uniprot_annotation_length_avg}\n"
+            f"    Number of Words: {self.uniprot_annotation_no_words}\n"
+            f"    Missing Amount: {self.uniprot_annotation_missing_amount}\n"
+            f"    Missing Percent: {self.uniprot_annotation_missing_percent}%\n"
+            f"  Pfam Annotations:\n"
+            f"    Amount: {self.pfam_annotation_amount}\n"
+            f"    Annotation-Length (Min/Max/Avg): "
+            f"{self.pfam_annotation_length_min} / "
+            f"{self.pfam_annotation_length_max} / "
+            f"{self.pfam_annotation_length_avg}\n"
+            f"    Number of Words: {self.pfam_annotation_no_words}\n"
+            f"    Missing Amount: {self.pfam_annotation_missing_amount}\n"
+            f"    Missing Percent: {self.pfam_annotation_missing_percent}%"
         )
