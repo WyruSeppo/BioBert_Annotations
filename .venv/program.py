@@ -6,7 +6,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("BioBERT")
 
 CONFIG = {
-    "fasta_file": "C:\\Users\\SebastianRossboeck\\Desktop\\BioBert4\\.venv\\spore-formers_test.faa",
+    "fasta_file": "C:\\Users\\SebastianRossboeck\\Desktop\\BioBert4\\spore-formers_test.faa",
     "annotation_file_input": "C:\\Users\\SebastianRossboeck\\Desktop\\BioBert4\\annotationData_output_test.txt",
     "annotation_file_output": "C:\\Users\\SebastianRossboeck\\Desktop\\BioBert4\\annotationData_output_test.txt",
     "annotation_embedding_file_output": "C:\\Users\\SebastianRossboeck\\Desktop\\BioBert4\\annotationData_embedding_output_test.txt",
