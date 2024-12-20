@@ -6,17 +6,9 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("BioBERT")
 
-CONFIG = {
-    "fasta_file": "C:\\Users\\SebastianRossboeck\\Desktop\\BioBert4\\spore-formers_test.faa",
-    "annotation_file_input": "C:\\Users\\SebastianRossboeck\\Desktop\\BioBert4\\annotationData_output_test.txt",
-    "annotation_file_output": "C:\\Users\\SebastianRossboeck\\Desktop\\BioBert4\\annotationData_output_test.txt",
-    "annotation_embedding_file_output": "C:\\Users\\SebastianRossboeck\\Desktop\\BioBert4\\annotationData_embedding_output_test.txt",
-    "data_eval_output": "C:\\Users\\SebastianRossboeck\\Desktop\\BioBert4\\data_eval_output_test.txt",
-    "loadAnnotationsFromFile":True,
-    "getPfamEmbeddings":False,
-    "getUniProtEmbeddings":False,
-    "model":"dmis-lab/biobert-base-cased-v1.1"
-}
+CONFIG = read_config('C:\\Users\\SebastianRossboeck\\Desktop\\BioBert4\\.venv\\biobert.ini')
+
+print(CONFIG)
 
 logger.info("BioBert Annotation Similarity v1 Start") 
 
@@ -64,6 +56,7 @@ writeToFile(evaluateData(annotationData).generateString(), CONFIG["data_eval_out
 
 
 #4.1 get Encodings for pfam-description
+'''
 logger.info("Create Embeddings")
 if CONFIG["getPfamEmbeddings"]:
     annotationData = getEmbeddings(annotationData, CONFIG["model"],"pfam")
@@ -76,7 +69,7 @@ if CONFIG["getUniProtEmbeddings"]:
 #If we created new embeddings: save the data to file
 if CONFIG["getUniProtEmbeddings"] or CONFIG["getPfamEmbeddings"]:
     saveAnnotations(annotationData, CONFIG["annotation_embedding_file_output"])
- 
+''' 
 
 
 

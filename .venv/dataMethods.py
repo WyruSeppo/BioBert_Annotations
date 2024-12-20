@@ -5,6 +5,7 @@ import pandas as pd
 from classes import *
 import logging
 from apiMethods import *
+import configparser
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("BioBERT")
@@ -127,3 +128,41 @@ def configIsValid(config):
 def writeToFile(input, outputfile):
     with open(outputfile, "w") as f:
         f.write(input)
+        
+def read_config(filePath = 'biobert.ini'):
+    #https://www.geeksforgeeks.org/how-to-write-a-configuration-file-in-python/
+    
+    # Create a ConfigParser object
+    config = configparser.ConfigParser()
+
+    # Read the configuration file
+    config.read(filePath)
+
+    # Access values from the configuration file
+    fasta_file = config.get('General','fasta_file')
+    annotation_file_input = config.get('General','annotation_file_input')
+    annotation_file_output = config.get('General','annotation_file_output')
+    annotation_embedding_file_output = config.get('General','annotation_embedding_file_output')
+    data_eval_output = config.get('General','data_eval_output')
+    loadAnnotationsFromFile = config.getboolean('General','loadAnnotationsFromFile')
+    getPfamEmbeddings = config.getboolean('General','getPfamEmbeddings')
+    getUniProtEmbeddings = config.getboolean('General','getUniProtEmbeddings')
+    model = config.get('General','model')
+
+
+    # Return a dictionary with the retrieved values
+    config_values = {
+        'fasta_file' : fasta_file,
+        'annotation_file_input' : annotation_file_input,
+        'annotation_file_output' : annotation_file_output,
+        'annotation_embedding_file_output' : annotation_embedding_file_output,
+        'data_eval_output' : data_eval_output,
+        'loadAnnotationsFromFile' : loadAnnotationsFromFile,
+        'getPfamEmbeddings' : getPfamEmbeddings,
+        'getUniProtEmbeddings' : getUniProtEmbeddings,
+        'model' : model
+    }
+
+    return config_values
+    
+    
