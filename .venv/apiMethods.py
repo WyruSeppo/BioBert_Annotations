@@ -121,40 +121,6 @@ def annotate_data(annotationData, showProgress = False):
         counter += 1
         
     return annotationData
-
-def evaluateData(annotationData):
-    data = EvaluatedData()
-    data.no_sequences = len(annotationData)
-    data.pfam_annotation_amount = sum(1 for x in annotationData if x.pfam_description != None)
-    
-     # Filter descriptions that are not empty
-    descriptions = [x.pfam_description for x in annotationData if x.pfam_description != None]
-
-    # Length of non-empty descriptions
-    description_lengths = [len(desc) for desc in descriptions]
-    
-    if description_lengths:  # Check if there are valid descriptions
-        data.pfam_annotation_length_avg = sum(description_lengths) / len(description_lengths)
-        data.pfam_annotation_length_max = max(description_lengths)
-        data.pfam_annotation_length_min = min(description_lengths)
-    else:
-        data.pfam_annotation_length_avg = 0
-        data.pfam_annotation_length_max = 0
-        data.pfam_annotation_length_min = 0
-    
-      # Count missing descriptions
-    data.pfam_annotation_missing_amount = sum(1 for x in annotationData if x.pfam_description == "")
-    
-    # Calculate missing percentage
-    if data.no_sequences > 0:
-        data.pfam_annotation_missing_percent = (data.pfam_annotation_missing_amount / data.no_sequences) * 100
-    else:
-        data.pfam_annotation_missing_percent = 0
-
-    # Calculate total number of words across all descriptions
-    data.pfam_annotation_no_words = sum(len(desc.split()) for desc in descriptions)
-    
-    return data
     
 def getUniProtConversion(ffrom,to,refseqIds):
 

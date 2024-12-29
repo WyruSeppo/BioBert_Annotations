@@ -92,7 +92,7 @@ def evaluateData(annotationData):
         data.pfam_annotation_length_min = 0
     
       # Count missing descriptions
-    data.pfam_annotation_missing_amount = sum(1 for x in annotationData if x.pfam_description == "")
+    data.pfam_annotation_missing_amount = sum(1 for x in annotationData if x.pfam_description == "None")
     
     # Calculate missing percentage
     if data.no_sequences > 0:
@@ -102,6 +102,37 @@ def evaluateData(annotationData):
 
     # Calculate total number of words across all descriptions
     data.pfam_annotation_no_words = sum(len(desc.split()) for desc in descriptions)
+    
+    #again for uniprot
+    data.uniprot_annotation_amount = sum(1 for x in annotationData if x.uniprot_function != None)
+    
+    #Filter descriptions that are not empty
+    descriptions = [x.uniprot_function for x in annotationData if x.uniprot_function != None]
+
+    # Length of non-empty descriptions
+    description_lengths = [len(desc) for desc in descriptions]
+    
+    if description_lengths:  # Check if there are valid descriptions
+        data.uniprot_annotation_length_avg = sum(description_lengths) / len(description_lengths)
+        data.uniprot_annotation_length_max = max(description_lengths)
+        data.uniprot_annotation_length_min = min(description_lengths)
+    else:
+        data.uniprot_annotation_length_avg = 0
+        data.uniprot_annotation_length_max = 0
+        data.uniprot_annotation_length_min = 0
+    
+      # Count missing descriptions
+    data.uniprot_annotation_missing_amount = sum(1 for x in annotationData if x.uniprot_function == "None")
+    
+    # Calculate missing percentage
+    if data.no_sequences > 0:
+        data.uniprot_annotation_missing_percent = (data.uniprot_annotation_missing_amount / data.no_sequences) * 100
+    else:
+        data.uniprot_annotation_missing_percent = 0
+
+    # Calculate total number of words across all descriptions
+    data.uniprot_annotation_no_words = sum(len(desc.split()) for desc in descriptions)
+    
     
     return data
 

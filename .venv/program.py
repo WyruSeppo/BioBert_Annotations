@@ -8,8 +8,6 @@ logger = logging.getLogger("BioBERT")
 
 CONFIG = read_config('C:\\Users\\SebastianRossboeck\\Desktop\\BioBert4\\.venv\\biobert.ini')
 
-print(CONFIG)
-
 logger.info("BioBert Annotation Similarity v1 Start") 
 
 #1 evaluate the config to catch invlid inputs early
@@ -56,7 +54,6 @@ writeToFile(evaluateData(annotationData).generateString(), CONFIG["data_eval_out
 
 
 #4.1 get Encodings for pfam-description
-'''
 logger.info("Create Embeddings")
 if CONFIG["getPfamEmbeddings"]:
     annotationData = getEmbeddings(annotationData, CONFIG["model"],"pfam")
@@ -69,7 +66,7 @@ if CONFIG["getUniProtEmbeddings"]:
 #If we created new embeddings: save the data to file
 if CONFIG["getUniProtEmbeddings"] or CONFIG["getPfamEmbeddings"]:
     saveAnnotations(annotationData, CONFIG["annotation_embedding_file_output"])
-''' 
+
 
 
 
