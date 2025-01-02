@@ -48,9 +48,10 @@ with torch.no_grad():
     outputs = model(**inputs)
 
 # Extract embeddings (CLS token representations)
-embeddings = outputs.last_hidden_state[:, 0, :] ```
+embeddings = outputs.last_hidden_state[:, 0, :]
+```
+This data is then saved to the path specified in annotation_embedding_file_output. This file is too big to upload it in github, but If you have created it once, you can load it again and skip the first four steps of the program.
 
-   
 
 ## links
 our google doc: https://docs.google.com/document/d/1TD_wkrN5wPjKABs1-eJSVIOPAThNpR0uJz90E76WAeY/edit?tab=t.0
