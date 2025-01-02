@@ -15,7 +15,7 @@ After that, install the necesary libraries by typeing ``` pip install -r require
 ## Running the program
 
 ### 1. Config
-The biobert.ini file contains multiple parameters to configure the program.
+The biobert.ini file contains multiple parameters to configure the program. At the start, these setting will be loaded.
 
 - fasta_file =  The file location for the fasta file that contains the Ids of proteins we want to process
 - annotation_file_input =  The file location for the Annotation Data, when loading the data from file.
