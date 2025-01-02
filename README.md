@@ -14,7 +14,17 @@ After that, install the necesary libraries by typeing ``` pip install -r require
 
 
 ## 1. Config
+The biobert.ini file contains multiple parameters to configure the program.
 
+- fasta_file =  The file location for the fasta file that contains the Ids of proteins we want to process
+- annotation_file_input =  The file location for the Annotation Data, when loading the data from file.
+- annotation_file_output =  The file location for the Annotation Data, without the embeddings.
+- annotation_embedding_file_output = The file location for the Annotation Data, including the embeddings.
+- data_eval_output = The file location for the result of the data evaluation
+- loadAnnotationsFromFile (boolean): Sets whether or not the annotation data should be loaded from a file or fetched from the APIs 
+- getPfamEmbeddings (boolean): Sets whether or not the embeddings for the Pfam annotations should be generated
+- getUniProtEmbeddings (boolean): Sets whether or not th embeddings for the UniProt annotations should be generated
+- model: the name of the model that will be loaded
 
 ## 2.1 Loading annotations
 
