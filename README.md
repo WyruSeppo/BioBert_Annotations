@@ -31,8 +31,10 @@ The biobert.ini file contains multiple parameters to configure the program. At t
 If the corresponding config is set, the annotationdata will be loaded from a file. This file will be created after fetching the data from the APIs. The process of fetching the annotations is quite time consuming, since they are being fetched in serial. It is advised to load the data from file once they have been fetched. "annotationdata_output.txt" contains the annotationData for the spore-former.faa dataset.
 
 ### 2.2 Fetching annotations
+For each Ref_Seq identifer in the fasta file, we convert those to UniProtKB Ids, then get the annotations from UniProt and Pfam via their respective APIs and create a List of AnnotationData objects. These objects hold the relevant information for the nucleodtid sequences, including: UniprotId, RefSeqId, PfamId, annotations from Uniprot and Pfam, as well as the BioBert embeddings later on.
 
 ### 3 Evalutate Data
+
 
 ### 4 Generate Encodings
 
