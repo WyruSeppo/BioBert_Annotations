@@ -1,6 +1,6 @@
 # BioBert_Annotations
 
-This project was set up with python 3.11.9 and Visual Studio. These will need to be installed for this guide to work.
+This project was set up with python 3.11.9 and Visual Studio. If you chose to run this program in a different environment, please disregard the next section. The libraries from the requirements.txt will be needed to run this program. Please install those in any way you prefer.
 When this project was started in November 2024, python version 3.11.9 was chosen due to compatibility issues. Depending on the date, these issues might have been resolved.
 
 ## Setting up the environment
