@@ -12,6 +12,7 @@ This sets up the python environment.
 
 After that, install the necesary libraries by typeing ``` pip install -r requirements.txt ``` in the terminal.
 
+# Running the program
 
 ## 1. Config
 The biobert.ini file contains multiple parameters to configure the program.
