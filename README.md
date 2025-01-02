@@ -12,9 +12,9 @@ This sets up the python environment.
 
 After that, install the necesary libraries by typeing ``` pip install -r requirements.txt ``` in the terminal.
 
-# Running the program
+## Running the program
 
-## 1. Config
+### 1. Config
 The biobert.ini file contains multiple parameters to configure the program.
 
 - fasta_file =  The file location for the fasta file that contains the Ids of proteins we want to process
@@ -27,13 +27,13 @@ The biobert.ini file contains multiple parameters to configure the program.
 - getUniProtEmbeddings (boolean): Sets whether or not th embeddings for the UniProt annotations should be generated
 - model: the name of the model that will be loaded
 
-## 2.1 Loading annotations
+### 2.1 Loading annotations
 
-## 2.2 Fetching annotations
+### 2.2 Fetching annotations
 
-## 3 Evalutate Data
+### 3 Evalutate Data
 
-## 4 Generate Encodings
+### 4 Generate Encodings
 
 
 ## links
