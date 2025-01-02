@@ -39,6 +39,18 @@ The annotations are evaluated. Their average length, max, min and missing annota
 
 ### 4 Generate Encodings
 
+for each annotation, we generate the embedding by passing the data through the model and then saving the embedding in the respective AnnotationData object.
+```
+inputs = tokenizer(textInput, return_tensors="pt", padding=True, truncation=True, max_length=512)
+
+# Forward pass through the model
+with torch.no_grad():
+    outputs = model(**inputs)
+
+# Extract embeddings (CLS token representations)
+embeddings = outputs.last_hidden_state[:, 0, :] ```
+
+   
 
 ## links
 our google doc: https://docs.google.com/document/d/1TD_wkrN5wPjKABs1-eJSVIOPAThNpR0uJz90E76WAeY/edit?tab=t.0
