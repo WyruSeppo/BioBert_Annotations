@@ -12,6 +12,19 @@ This sets up the python environment.
 
 After that, install the necesary libraries by typeing ``` pip install -r requirements.txt ``` in the terminal.
 
+
+## 1. Config
+
+
+## 2.1 Loading annotations
+
+## 2.2 Fetching annotations
+
+## 3 Evalutate Data
+
+## 4 Generate Encodings
+
+
 ## links
 our google doc: https://docs.google.com/document/d/1TD_wkrN5wPjKABs1-eJSVIOPAThNpR0uJz90E76WAeY/edit?tab=t.0
 https://huggingface.co/docs/transformers/preprocessing
