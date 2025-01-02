@@ -28,6 +28,7 @@ The biobert.ini file contains multiple parameters to configure the program. At t
 - model: the name of the model that will be loaded
 
 ### 2.1 Loading annotations
+If the corresponding config is set, the annotationdata will be loaded from a file. This file will be created after fetching the data from the APIs. The process of fetching the annotations is quite time consuming, since they are being fetched in serial. It is advised to load the data from file once they have been fetched. "annotationdata_output.txt" contains the annotationData for the spore-former.faa dataset.
 
 ### 2.2 Fetching annotations
 
