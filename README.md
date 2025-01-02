@@ -35,6 +35,7 @@ For each Ref_Seq identifer in the fasta file, we convert those to UniProtKB Ids,
 
 ### 3 Evalutate Data
 
+The annotations are evaluated. Their average length, max, min and missing annotations are noted and the result is saved at the data_eval_output-setting. 
 
 ### 4 Generate Encodings
 
