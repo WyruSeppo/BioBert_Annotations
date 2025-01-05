@@ -1,3 +1,4 @@
+import os
 from Bio import SeqIO
 import time
 import requests
@@ -109,10 +110,10 @@ def evaluateData(annotationData):
     #Filter descriptions that are not empty
     descriptions = [x.uniprot_function for x in annotationData if x.uniprot_function != None]
 
-    # Length of non-empty descriptions
+    # Length of descriptions
     description_lengths = [len(desc) for desc in descriptions]
     
-    if description_lengths:  # Check if there are valid descriptions
+    if description_lengths: 
         data.uniprot_annotation_length_avg = sum(description_lengths) / len(description_lengths)
         data.uniprot_annotation_length_max = max(description_lengths)
         data.uniprot_annotation_length_min = min(description_lengths)
@@ -121,7 +122,7 @@ def evaluateData(annotationData):
         data.uniprot_annotation_length_max = 0
         data.uniprot_annotation_length_min = 0
     
-      # Count missing descriptions
+    # Count missing descriptions
     data.uniprot_annotation_missing_amount = sum(1 for x in annotationData if x.uniprot_function == "None")
     
     # Calculate missing percentage
@@ -152,9 +153,30 @@ def load_ids_fasta(fasta_file):
     ref_seq_ids = [record.id for record in SeqIO.parse(fasta_file, "fasta")]
     return ref_seq_ids
 
+def can_save_file(file_path):
+    try:
+        # Get the directory part of the path
+        directory = os.path.dirname(file_path) or "."
+        
+        # Check if the directory exists
+        if not os.path.exists(directory):
+            return False
+        
+        # Check if the directory is writable
+        return os.access(directory, os.W_OK)
+    except Exception as e:
+        return False
+
 def configIsValid(config):
-    #check config for things
-    return True
+    #check if we can write in each of the directories supplied in the config
+    valid = True
+    valid = valid and can_save_file(config["fasta_file"])
+    valid = valid and can_save_file(config["annotation_file_input"])
+    valid = valid and can_save_file(config["annotation_file_output"])
+    valid = valid and can_save_file(config["annotation_embedding_file_output"])
+    valid = valid and can_save_file(config["data_eval_output"])
+
+    return valid
 
 def writeToFile(input, outputfile):
     with open(outputfile, "w") as f:
@@ -169,7 +191,7 @@ def read_config(filePath = 'biobert.ini'):
     # Read the configuration file
     config.read(filePath)
 
-    # Access values from the configuration file
+    # Get values from the configuration file
     fasta_file = config.get('General','fasta_file')
     annotation_file_input = config.get('General','annotation_file_input')
     annotation_file_output = config.get('General','annotation_file_output')

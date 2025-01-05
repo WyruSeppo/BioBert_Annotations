@@ -10,12 +10,12 @@ CONFIG = read_config('C:\\Users\\SebastianRossboeck\\Desktop\\BioBert4\\.venv\\b
 
 logger.info("BioBert Annotation Similarity v1 Start") 
 
-#1 evaluate the config to catch invlid inputs early
+#1 evaluate the config to catch invalid inputs early
 if configIsValid(CONFIG) == False:
     print("CONFIG is not valid")
     quit()
 
-
+quit()
 #2 if there exists a file with annotationData: load it, otherwise fetch annotations from Uniprot/Pfam
 if CONFIG["loadAnnotationsFromFile"]:
     #load annotationData from file
@@ -41,7 +41,7 @@ else :
         logger.error(f"Error loading conversion from uniprot api: {e}")
         
     #get Annotations
-    #this automatically creates a file with the annotationdata we receive form the apis
+    #this automatically creates a file with the annotationdata we receive from the apis
     try:
         annotationData = getAnnotations(annotationData, CONFIG["annotation_file_output"])
     except Exception as e:
@@ -62,7 +62,8 @@ if CONFIG["getPfamEmbeddings"]:
 #4.2 get Encodings for uniprot-function
 if CONFIG["getUniProtEmbeddings"]:
     annotationData = getEmbeddings(annotationData, CONFIG["model"],"uniprot")
- 
+
+
 #If we created new embeddings: save the data to file
 if CONFIG["getUniProtEmbeddings"] or CONFIG["getPfamEmbeddings"]:
     saveAnnotations(annotationData, CONFIG["annotation_embedding_file_output"])
