@@ -13,7 +13,7 @@ def getEmbeddings(annotationData, modelName = "dmis-lab/biobert-base-cased-v1.1"
 
     count = 0
     max = len(annotationData)
-    #this is for testing! do it in batches?
+ 
     for annotation in annotationData:
         count += 1        
         logger.info(str(count / max) + " %")
