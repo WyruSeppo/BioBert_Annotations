@@ -47,6 +47,8 @@ else :
     except Exception as e:
         logger.error(f"Error getting annotations from api: {e}")
 
+#2.5 Clean annotations
+annotationData.cleanAnnotations()
 
 #3 Data Eval on annotations
 logger.info("Evaluate Data")
