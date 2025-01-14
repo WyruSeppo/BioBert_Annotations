@@ -1,0 +1,14 @@
+Evaluated Data:
+  Number of Sequences: 234
+  UniProt Annotations:
+    Amount: 234
+    Annotation-Length (Min/Max/Avg): 55 / 560 / 201.1196581196581
+    Number of Words: 5058
+    Missing Amount: 0
+    Missing Percent: 0.0%
+  Pfam Annotations:
+    Amount: 234
+    Annotation-Length (Min/Max/Avg): 48 / 12651 / 382.8974358974359
+    Number of Words: 7914
+    Missing Amount: 0
+    Missing Percent: 0.0%

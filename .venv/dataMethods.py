@@ -50,6 +50,7 @@ def loadAnnotations(filePath):
             organism = columns[10]
             pfam_description = columns[11]
             uniprot_function = columns[12] if len(columns) > 12 else ""
+            embedding_distance = columns[13] if len(columns) > 13 else ""
 
             # Create an AnnotationData object and append it to the result list
             result.append(
@@ -66,7 +67,8 @@ def loadAnnotations(filePath):
                     geneNames=geneNames,
                     organism=organism,
                     pfam_description=pfam_description,
-                    uniprot_function=uniprot_function
+                    uniprot_function=uniprot_function,
+                    embedding_distance=embedding_distance
                 )
             )
 
@@ -197,6 +199,7 @@ def read_config(filePath = 'biobert.ini'):
     annotation_file_output = config.get('General','annotation_file_output')
     annotation_embedding_file_output = config.get('General','annotation_embedding_file_output')
     data_eval_output = config.get('General','data_eval_output')
+    data_eval_output2 = config.get('General','data_eval_output2')
     loadAnnotationsFromFile = config.getboolean('General','loadAnnotationsFromFile')
     getPfamEmbeddings = config.getboolean('General','getPfamEmbeddings')
     getUniProtEmbeddings = config.getboolean('General','getUniProtEmbeddings')
@@ -210,6 +213,7 @@ def read_config(filePath = 'biobert.ini'):
         'annotation_file_output' : annotation_file_output,
         'annotation_embedding_file_output' : annotation_embedding_file_output,
         'data_eval_output' : data_eval_output,
+        'data_eval_output2' : data_eval_output2,
         'loadAnnotationsFromFile' : loadAnnotationsFromFile,
         'getPfamEmbeddings' : getPfamEmbeddings,
         'getUniProtEmbeddings' : getUniProtEmbeddings,

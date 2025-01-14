@@ -50,13 +50,12 @@ class AnnotationData:
             "embedding_distance": self.embedding_distance,
         }
         
-    def cleanAnnotations():
-        for i in range(len(self.pfam_description)):
-            #remove leading/trailing whitespaces
-            self.pfam_description[i] = self.pfam_description[i].strip()
-            
-            # Remove multiple whitespaces
-            self.pfam_description[i] = ' '.join(self.pfam_description[i].split())
+    def cleanAnnotations(self):
+        #remove leading/trailing whitespaces
+        self.pfam_description = self.pfam_description.strip()
+        
+        # Remove multiple whitespaces
+        self.pfam_description = ' '.join(self.pfam_description.split())
 
 class EvaluatedData:
     def __init__(self):
