@@ -8,3 +8,4 @@ __pycache__/
 annotationData_embedding_output_only pfam.txt
 annotationData_embedding_output.txt
 .venv/pyvenv.cfg
+.venv/biobert.ini
