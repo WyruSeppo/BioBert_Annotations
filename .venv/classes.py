@@ -1,6 +1,6 @@
 #the class AnnotationData bundles all the data we are handling for each protein
 class AnnotationData:
-    def __init__(self, id: int, pfam_id: str, uniprot_id: str, pfam_embedding, uniprot_embedding, refSeqAccession, entry, entryName, proteinNames, geneNames, organism, pfam_description,uniprot_function):
+    def __init__(self, id: int, pfam_id: str, uniprot_id: str, pfam_embedding, uniprot_embedding, refSeqAccession, entry, entryName, proteinNames, geneNames, organism, pfam_description,uniprot_function, embedding_distance):
         self.id = id
         self.pfam_id = pfam_id
         self.uniprot_id = uniprot_id
@@ -14,6 +14,7 @@ class AnnotationData:
         self.organism = organism
         self.uniprot_function = uniprot_function
         self.pfam_description = pfam_description
+        self.embedding_distance = embedding_distance
         
     def __repr__(self):
         return (f"AnnotationData("
@@ -46,9 +47,10 @@ class AnnotationData:
             "organism": self.organism,
             "pfam_description": self.pfam_description,
             "uniprot_function": self.uniprot_function,
+            "embedding_distance": self.embedding_distance,
         }
         
-    def cleanAnnotations()
+    def cleanAnnotations():
         for i in range(len(self.pfam_description)):
             #remove leading/trailing whitespaces
             self.pfam_description[i] = self.pfam_description[i].strip()

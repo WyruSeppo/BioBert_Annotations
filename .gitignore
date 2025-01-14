@@ -7,3 +7,4 @@ __pycache__/
 .venv/pyvenv.cfg
 annotationData_embedding_output_only pfam.txt
 annotationData_embedding_output.txt
+.venv/pyvenv.cfg

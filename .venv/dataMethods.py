@@ -75,10 +75,10 @@ def loadAnnotations(filePath):
 def evaluateData(annotationData):
     data = EvaluatedData()
     data.no_sequences = len(annotationData)
-    data.pfam_annotation_amount = sum(1 for x in annotationData if x.pfam_description != None)
+    data.pfam_annotation_amount = sum(1 for x in annotationData if x.pfam_description != None and x.pfam_description != "None")
     
      # Filter descriptions that are not empty
-    descriptions = [x.pfam_description for x in annotationData if x.pfam_description != None]
+    descriptions = [x.pfam_description for x in annotationData if x.pfam_description != None and x.pfam_description != "None"]
 
     # Length of non-empty descriptions
     description_lengths = [len(desc) for desc in descriptions]
@@ -105,10 +105,10 @@ def evaluateData(annotationData):
     data.pfam_annotation_no_words = sum(len(desc.split()) for desc in descriptions)
     
     #again for uniprot
-    data.uniprot_annotation_amount = sum(1 for x in annotationData if x.uniprot_function != None)
+    data.uniprot_annotation_amount = sum(1 for x in annotationData if x.uniprot_function != None and x.uniprot_function != "None")
     
     #Filter descriptions that are not empty
-    descriptions = [x.uniprot_function for x in annotationData if x.uniprot_function != None]
+    descriptions = [x.uniprot_function for x in annotationData if x.uniprot_function != None and x.uniprot_function != "None"]
 
     # Length of descriptions
     description_lengths = [len(desc) for desc in descriptions]

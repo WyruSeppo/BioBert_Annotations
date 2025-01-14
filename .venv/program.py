@@ -54,6 +54,8 @@ annotationData.cleanAnnotations()
 logger.info("Evaluate Data")
 writeToFile(evaluateData(annotationData).generateString(), CONFIG["data_eval_output"])
 
+#3.5 Clean Data: Remove entries with annotations that are longer than 512 words
+#remove entries that don't have BOTH a pfam-description AND uniprot-function.
 
 #4.1 get Encodings for pfam-description
 logger.info("Create Embeddings")
@@ -71,9 +73,9 @@ if CONFIG["getUniProtEmbeddings"] or CONFIG["getPfamEmbeddings"]:
     saveAnnotations(annotationData, CONFIG["annotation_embedding_file_output"])
 
 
+#calculate the distance between the embeddings
 
 
-#cluster the encodings data
 
 #visualize encoding data
 print("BioBert Annotation Similarity v1 End") 
