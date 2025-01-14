@@ -33,7 +33,7 @@ def get_uniprot_annotation(protein_id):
             elif line.__contains__("-!-") and not endOfFunction:
                 endOfFunction = True
             elif line.startswith("CC") and  not endOfFunction:
-                function += line #remove whitespace and stuff at the end
+                function += line[2:].lstrip() #remove whitespace and stuff at the end
             elif line.startswith("DR   Pfam;"):
                 pfam = line.split()[2].removesuffix(';')
 
