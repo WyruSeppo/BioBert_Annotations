@@ -1,5 +1,0 @@
-id	pfam_id	uniprot_id	pfam_embedding	uniprot_embedding	refSeqAccession	entry	entry_name	protein_names	gene_names	organism	pfam_description	uniprot_function
-None	PF13761	A0A6L8PTH4	None	None	WP_000002633.1	None	None	A0A6L8PTH4_BACAN	None	None	This domain is often found at the C-terminus of proteins containing Pfam:PF03435.	None
-None	PF13761	A0AAC8N5Q3	None	None	WP_000002633.1	None	None	A0AAC8N5Q3_BACAN	None	None	This domain is often found at the C-terminus of proteins containing Pfam:PF03435.	None
-None	PF01844	A0A3P1U8I5	None	None	WP_000002822.1	None	None	A0A3P1U8I5_BACAN	None	None	His-Asn-His (HNH) proteins are a very common family of small nucleic acid-binding proteins that are generally associated with endonuclease activity [[cite:PUB00106916]].	None
-None	PF01844	A0A6L7HFU2	None	None	WP_000002822.1	None	None	A0A6L7HFU2_BACAN	None	None	His-Asn-His (HNH) proteins are a very common family of small nucleic acid-binding proteins that are generally associated with endonuclease activity [[cite:PUB00106916]].	None

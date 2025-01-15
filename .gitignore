@@ -9,3 +9,23 @@ annotationData_embedding_output_only pfam.txt
 annotationData_embedding_output.txt
 .venv/pyvenv.cfg
 .venv/biobert.ini
+annotationData_embedding_output_test.txt
+annotationData_output_small_orig.txt
+annotationData_output_small.txt
+annotationData_output_test.txt
+annotationData_output.txt
+data_eval_output_2.txt
+data_eval_output_2025-01-14.txt
+data_eval_output_test.txt
+data_eval_output.txt
+spore-formers_dev.faa
+spore-formers_test.faa
+old data/annotationData_embedding_output_test.txt
+old data/annotationData_output_small_orig.txt
+old data/annotationData_output_small.txt
+old data/annotationData_output_test.txt
+old data/annotationData_output.txt
+old data/data_eval_output_2.txt
+old data/data_eval_output_2025-01-14.txt
+old data/data_eval_output_test.txt
+old data/data_eval_output.txt
