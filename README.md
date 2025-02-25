@@ -70,6 +70,8 @@ This data is then saved to the path specified in annotation_embedding_file_outpu
 
 For each protein, we compute the distance between the embeddings of the UniProt and Pfam annotations using the cosine similarity. Since the embeddings can be thought of as high-dimensional vectors, we can use the cosine similarity to gauge how similary the "direction" of the two "vectors" is.
 
+The data will be saved to the location designated in the biobert.ini file.
+
 ## links
 our google doc: https://docs.google.com/document/d/1TD_wkrN5wPjKABs1-eJSVIOPAThNpR0uJz90E76WAeY/edit?tab=t.0
 https://huggingface.co/docs/transformers/preprocessing
