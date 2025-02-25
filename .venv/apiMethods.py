@@ -115,7 +115,7 @@ def annotate_data(annotationData, showProgress = False):
         entry.pfam_description = pfamAnnotation or "None"
 
         # Set other attributes to "None" if needed
-        for attr in ['id', 'pfam_embedding', 'uniprot_embedding', 'entry', 'entry_name', 'gene_names', 'organism']:
+        for attr in ['id', 'pfam_embedding', 'uniprot_embedding', 'entry', 'entry_name', 'gene_names', 'organism', 'embedding_distance']:
             setattr(entry, attr, "None")
 
         counter += 1
@@ -201,7 +201,7 @@ def getUniProtConversion(ffrom,to,refseqIds):
         print(f"Fetched {len(all_results)} results")
         
     for entry in all_results:
-       result.append(AnnotationData("","",entry["to"],"","",entry["from"],"","","","","","",""))
+       result.append(AnnotationData("","",entry["to"],"","",entry["from"],"","","","","","","",""))
     
     
     return result    
