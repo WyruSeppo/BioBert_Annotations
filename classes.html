@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module classes</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title">classes</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Csebastianrossboeck%5Cdesktop%5Cbiobert4%5C.venv%5Cclasses.py">c:\users\sebastianrossboeck\desktop\biobert4\.venv\classes.py</a></td></tr></table>
+    <p><span class="code">#the&nbsp;class&nbsp;<a href="#AnnotationData">AnnotationData</a>&nbsp;bundles&nbsp;all&nbsp;the&nbsp;data&nbsp;we&nbsp;are&nbsp;handling&nbsp;for&nbsp;each&nbsp;protein</span></p>
+<p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="builtins.html#object">builtins.object</a>
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="classes.html#AnnotationData">AnnotationData</a>
+</dt><dt class="heading-text"><a href="classes.html#EvaluatedData">EvaluatedData</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="AnnotationData">class <strong>AnnotationData</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#AnnotationData">AnnotationData</a>(id:&nbsp;int,&nbsp;pfam_id:&nbsp;str,&nbsp;uniprot_id:&nbsp;str,&nbsp;pfam_embedding,&nbsp;uniprot_embedding,&nbsp;refSeqAccession,&nbsp;entry,&nbsp;entryName,&nbsp;proteinNames,&nbsp;geneNames,&nbsp;organism,&nbsp;pfam_description,&nbsp;uniprot_function,&nbsp;embedding_distance)<br>
+&nbsp;<br>
+Represents&nbsp;annotation&nbsp;data&nbsp;for&nbsp;a&nbsp;protein,&nbsp;including&nbsp;Pfam&nbsp;and&nbsp;UniProt&nbsp;annotations.<br>
+&nbsp;<br>
+Attributes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;id&nbsp;(int):&nbsp;Unique&nbsp;identifier&nbsp;for&nbsp;the&nbsp;annotation.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pfam_id&nbsp;(str):&nbsp;Pfam&nbsp;identifier&nbsp;for&nbsp;the&nbsp;protein.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;uniprot_id&nbsp;(str):&nbsp;UniProt&nbsp;identifier&nbsp;for&nbsp;the&nbsp;protein.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pfam_embedding:&nbsp;Embedding&nbsp;representation&nbsp;of&nbsp;the&nbsp;Pfam&nbsp;annotation.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;uniprot_embedding:&nbsp;Embedding&nbsp;representation&nbsp;of&nbsp;the&nbsp;UniProt&nbsp;annotation.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;refSeqAccession&nbsp;(str):&nbsp;RefSeq&nbsp;accession&nbsp;number.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;entry&nbsp;(str):&nbsp;Entry&nbsp;name&nbsp;from&nbsp;UniProt.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;entry_name&nbsp;(str):&nbsp;Alternative&nbsp;entry&nbsp;name.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;protein_names&nbsp;(str):&nbsp;Names&nbsp;of&nbsp;the&nbsp;protein.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;gene_names&nbsp;(str):&nbsp;Names&nbsp;of&nbsp;the&nbsp;associated&nbsp;genes.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;organism&nbsp;(str):&nbsp;Organism&nbsp;from&nbsp;which&nbsp;the&nbsp;protein&nbsp;originates.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pfam_description&nbsp;(str):&nbsp;Description&nbsp;of&nbsp;the&nbsp;Pfam&nbsp;annotation.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;uniprot_function&nbsp;(str):&nbsp;Functional&nbsp;description&nbsp;from&nbsp;UniProt.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;embedding_distance:&nbsp;Distance&nbsp;metric&nbsp;between&nbsp;Pfam&nbsp;and&nbsp;UniProt&nbsp;embeddings.<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="AnnotationData-__init__"><strong>__init__</strong></a>(self, id: int, pfam_id: str, uniprot_id: str, pfam_embedding, uniprot_embedding, refSeqAccession, entry, entryName, proteinNames, geneNames, organism, pfam_description, uniprot_function, embedding_distance)</dt><dd><span class="code">Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</span></dd></dl>
+
+<dl><dt><a name="AnnotationData-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><span class="code">Returns&nbsp;a&nbsp;string&nbsp;representation&nbsp;of&nbsp;the&nbsp;<a href="#AnnotationData">AnnotationData</a>&nbsp;<a href="builtins.html#object">object</a>.</span></dd></dl>
+
+<dl><dt><a name="AnnotationData-cleanAnnotations"><strong>cleanAnnotations</strong></a>(self)</dt><dd><span class="code">Cleans&nbsp;annotation&nbsp;descriptions&nbsp;by&nbsp;removing&nbsp;excess&nbsp;whitespace.</span></dd></dl>
+
+<dl><dt><a name="AnnotationData-to_dict"><strong>to_dict</strong></a>(self)</dt><dd><span class="code">Converts&nbsp;the&nbsp;<a href="#AnnotationData">AnnotationData</a>&nbsp;<a href="builtins.html#object">object</a>&nbsp;into&nbsp;a&nbsp;dictionary.</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+</td></tr></table> <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="EvaluatedData">class <strong>EvaluatedData</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code">Stores&nbsp;statistical&nbsp;evaluations&nbsp;of&nbsp;annotation&nbsp;data,&nbsp;such&nbsp;as&nbsp;counts&nbsp;and&nbsp;lengths&nbsp;of&nbsp;annotations.<br>
+&nbsp;<br>
+Attributes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;no_sequences&nbsp;(int):&nbsp;Number&nbsp;of&nbsp;sequences&nbsp;analyzed.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;uniprot_annotation_amount&nbsp;(int):&nbsp;Count&nbsp;of&nbsp;UniProt&nbsp;annotations.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;uniprot_annotation_length_min&nbsp;(int):&nbsp;Minimum&nbsp;length&nbsp;of&nbsp;UniProt&nbsp;annotations.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;uniprot_annotation_length_max&nbsp;(int):&nbsp;Maximum&nbsp;length&nbsp;of&nbsp;UniProt&nbsp;annotations.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;uniprot_annotation_length_avg&nbsp;(int):&nbsp;Average&nbsp;length&nbsp;of&nbsp;UniProt&nbsp;annotations.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;uniprot_annotation_no_words&nbsp;(int):&nbsp;Number&nbsp;of&nbsp;words&nbsp;in&nbsp;UniProt&nbsp;annotations.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;uniprot_annotation_missing_amount&nbsp;(int):&nbsp;Number&nbsp;of&nbsp;missing&nbsp;UniProt&nbsp;annotations.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;uniprot_annotation_missing_percent&nbsp;(float):&nbsp;Percentage&nbsp;of&nbsp;missing&nbsp;UniProt&nbsp;annotations.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pfam_annotation_amount&nbsp;(int):&nbsp;Count&nbsp;of&nbsp;Pfam&nbsp;annotations.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pfam_annotation_length_min&nbsp;(int):&nbsp;Minimum&nbsp;length&nbsp;of&nbsp;Pfam&nbsp;annotations.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pfam_annotation_length_max&nbsp;(int):&nbsp;Maximum&nbsp;length&nbsp;of&nbsp;Pfam&nbsp;annotations.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pfam_annotation_length_avg&nbsp;(int):&nbsp;Average&nbsp;length&nbsp;of&nbsp;Pfam&nbsp;annotations.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pfam_annotation_no_words&nbsp;(int):&nbsp;Number&nbsp;of&nbsp;words&nbsp;in&nbsp;Pfam&nbsp;annotations.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pfam_annotation_missing_amount&nbsp;(int):&nbsp;Number&nbsp;of&nbsp;missing&nbsp;Pfam&nbsp;annotations.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pfam_annotation_missing_percent&nbsp;(float):&nbsp;Percentage&nbsp;of&nbsp;missing&nbsp;Pfam&nbsp;annotations.<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="EvaluatedData-__init__"><strong>__init__</strong></a>(self)</dt><dd><span class="code">Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</span></dd></dl>
+
+<dl><dt><a name="EvaluatedData-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><span class="code">Return&nbsp;repr(self).</span></dd></dl>
+
+<dl><dt><a name="EvaluatedData-generateString"><strong>generateString</strong></a>(self)</dt><dd><span class="code">Returns&nbsp;a&nbsp;formatted&nbsp;string&nbsp;summary&nbsp;of&nbsp;the&nbsp;evaluation&nbsp;data.</span></dd></dl>
+
+<dl><dt><a name="EvaluatedData-print_data"><strong>print_data</strong></a>(self)</dt><dd><span class="code">Prints&nbsp;a&nbsp;formatted&nbsp;summary&nbsp;of&nbsp;the&nbsp;evaluation&nbsp;data.</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

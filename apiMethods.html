@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module apiMethods</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title">apiMethods</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Csebastianrossboeck%5Cdesktop%5Cbiobert4%5C.venv%5Capimethods.py">c:\users\sebastianrossboeck\desktop\biobert4\.venv\apimethods.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="Bio.SeqIO.html">Bio.SeqIO</a><br>
+<a href="configparser.html">configparser</a><br>
+</td><td class="multicolumn"><a href="logging.html">logging</a><br>
+<a href="os.html">os</a><br>
+</td><td class="multicolumn"><a href="pandas.html">pandas</a><br>
+<a href="requests.html">requests</a><br>
+</td><td class="multicolumn"><a href="time.html">time</a><br>
+</td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-annotate_data"><strong>annotate_data</strong></a>(annotationData, showProgress=False)</dt><dd><span class="code">Annotates&nbsp;data&nbsp;with&nbsp;UniProt&nbsp;and&nbsp;Pfam&nbsp;information.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;annotationData&nbsp;(list):&nbsp;List&nbsp;of&nbsp;annotation&nbsp;objects.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;showProgress&nbsp;(bool,&nbsp;optional):&nbsp;Whether&nbsp;to&nbsp;show&nbsp;progress.&nbsp;Defaults&nbsp;to&nbsp;False.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;list:&nbsp;Annotated&nbsp;data.</span></dd></dl>
+ <dl><dt><a name="-getUniProtConversion"><strong>getUniProtConversion</strong></a>(ffrom, to, refseqIds)</dt><dd><span class="code">Converts&nbsp;identifiers&nbsp;using&nbsp;UniProt&nbsp;ID&nbsp;mapping&nbsp;service.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ffrom&nbsp;(str):&nbsp;Source&nbsp;database.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;(str):&nbsp;Target&nbsp;database.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;refseqIds&nbsp;(list):&nbsp;List&nbsp;of&nbsp;RefSeq&nbsp;IDs.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;list:&nbsp;Mapped&nbsp;annotation&nbsp;data.</span></dd></dl>
+ <dl><dt><a name="-get_pfam_annotation"><strong>get_pfam_annotation</strong></a>(protein_id)</dt><dd><span class="code">Fetches&nbsp;Pfam&nbsp;annotation&nbsp;for&nbsp;a&nbsp;given&nbsp;protein&nbsp;ID.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;protein_id&nbsp;(str):&nbsp;The&nbsp;Pfam&nbsp;ID&nbsp;of&nbsp;the&nbsp;protein.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;The&nbsp;Pfam&nbsp;description,&nbsp;or&nbsp;None&nbsp;if&nbsp;retrieval&nbsp;fails.</span></dd></dl>
+ <dl><dt><a name="-get_uniprot_annotation"><strong>get_uniprot_annotation</strong></a>(protein_id)</dt><dd><span class="code">Fetches&nbsp;UniProt&nbsp;annotation&nbsp;for&nbsp;a&nbsp;given&nbsp;protein&nbsp;ID.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;protein_id&nbsp;(str):&nbsp;The&nbsp;UniProt&nbsp;ID&nbsp;of&nbsp;the&nbsp;protein.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;tuple:&nbsp;(protein_name,&nbsp;function,&nbsp;pfam_id),&nbsp;or&nbsp;(None,&nbsp;None,&nbsp;None)&nbsp;if&nbsp;retrieval&nbsp;fails.</span></dd></dl>
+</td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+    
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>logger</strong> = &lt;Logger BioBERT (INFO)&gt;</td></tr></table>
+</body></html>

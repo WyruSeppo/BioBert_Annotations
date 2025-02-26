@@ -12,6 +12,15 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("BioBERT")
 
 def read_tsv(file_path):
+    """
+    Reads a TSV file and returns its contents as a Pandas DataFrame.
+
+    Parameters:
+        file_path (str): Path to the TSV file.
+
+    Returns:
+        pd.DataFrame or None: The DataFrame containing file data, or None if an error occurs.
+    """
     try:
         df = pd.read_csv(file_path, sep='\t')
         return df
@@ -21,6 +30,15 @@ def read_tsv(file_path):
 
 
 def loadAnnotations(filePath):
+    """
+    Loads annotation data from a TSV file and converts it into a list of AnnotationData objects.
+
+    Parameters:
+        filePath (str): Path to the TSV file containing annotation data.
+
+    Returns:
+        list[AnnotationData]: A list of AnnotationData objects parsed from the file.
+    """
     result = []
 
     with open(filePath, 'r') as file:
@@ -75,6 +93,15 @@ def loadAnnotations(filePath):
     return result
 
 def evaluateData(annotationData):
+    """
+    Evaluates annotation data to compute statistics on Pfam and UniProt annotations.
+
+    Parameters:
+        annotationData (list[AnnotationData]): A list of annotation data objects.
+
+    Returns:
+        EvaluatedData: An object containing statistical analysis of the annotation data.
+    """
     data = EvaluatedData()
     data.no_sequences = len(annotationData)
     data.pfam_annotation_amount = sum(1 for x in annotationData if x.pfam_description != None and x.pfam_description != "None")
@@ -140,22 +167,57 @@ def evaluateData(annotationData):
     return data
 
 def getAnnotations(annotationData, outputFilePath):
+    """
+    Annotates data using an external method and saves the results to a TSV file.
+
+    Parameters:
+        annotationData (list[AnnotationData]): A list of annotation data objects.
+        outputFilePath (str): Path to save the annotated data.
+
+    Returns:
+        list[AnnotationData]: The updated annotation data list.
+    """
     annotationData = annotate_data(annotationData)
     exportData = pd.DataFrame([obj.to_dict() for obj in annotationData])
     exportData.to_csv(outputFilePath, sep='\t', index=False)
     return annotationData
     
 def saveAnnotations(annotationData, outputFilePath):
+    """
+    Saves annotation data to a TSV file.
+
+    Parameters:
+        annotationData (list[AnnotationData]): A list of annotation data objects.
+        outputFilePath (str): Path to save the data.
+    """
     exportData = pd.DataFrame([obj.to_dict() for obj in annotationData])
     exportData.to_csv(outputFilePath, sep='\t', index=False)
     
 
 def load_ids_fasta(fasta_file):
+    """
+    Loads sequence IDs from a FASTA file.
+
+    Parameters:
+        fasta_file (str): Path to the FASTA file.
+
+    Returns:
+        list[str]: A list of sequence IDs from the FASTA file.
+    """
     logger.info(f"Loading FASTA file: {fasta_file}")
     ref_seq_ids = [record.id for record in SeqIO.parse(fasta_file, "fasta")]
     return ref_seq_ids
 
 def can_save_file(file_path):
+    """
+    Checks whether a file can be saved in the specified directory.
+
+    Parameters:
+        file_path (str): Path to the file.
+
+    Returns:
+        bool: True if the file can be saved, False otherwise.
+    """
     try:
         # Get the directory part of the path
         directory = os.path.dirname(file_path) or "."
@@ -170,6 +232,15 @@ def can_save_file(file_path):
         return False
 
 def configIsValid(config):
+    """
+    Validates the configuration by checking if files can be written to specified paths.
+
+    Parameters:
+        config (dict): Dictionary containing file paths from the configuration.
+
+    Returns:
+        bool: True if all paths are writable, False otherwise.
+    """
     #check if we can write in each of the directories supplied in the config
     valid = True
     valid = valid and can_save_file(config["fasta_file"])
@@ -181,10 +252,26 @@ def configIsValid(config):
     return valid
 
 def writeToFile(input, outputfile):
+    """
+    Writes a string to a file.
+
+    Parameters:
+        input (str): The content to be written.
+        outputfile (str): Path to the output file.
+    """
     with open(outputfile, "w") as f:
         f.write(input)
         
-def read_config(filePath = 'biobert.ini'):
+def read_config(filePath='biobert.ini'):
+    """
+    Reads a configuration file and extracts relevant settings.
+
+    Parameters:
+        filePath (str, optional): Path to the configuration file. Defaults to 'biobert.ini'.
+
+    Returns:
+        dict: A dictionary containing configuration values.
+    """
     #https://www.geeksforgeeks.org/how-to-write-a-configuration-file-in-python/
     
     # Create a ConfigParser object

@@ -1,5 +1,24 @@
 #the class AnnotationData bundles all the data we are handling for each protein
 class AnnotationData:
+    """
+    Represents annotation data for a protein, including Pfam and UniProt annotations.
+    
+    Attributes:
+        id (int): Unique identifier for the annotation.
+        pfam_id (str): Pfam identifier for the protein.
+        uniprot_id (str): UniProt identifier for the protein.
+        pfam_embedding: Embedding representation of the Pfam annotation.
+        uniprot_embedding: Embedding representation of the UniProt annotation.
+        refSeqAccession (str): RefSeq accession number.
+        entry (str): Entry name from UniProt.
+        entry_name (str): Alternative entry name.
+        protein_names (str): Names of the protein.
+        gene_names (str): Names of the associated genes.
+        organism (str): Organism from which the protein originates.
+        pfam_description (str): Description of the Pfam annotation.
+        uniprot_function (str): Functional description from UniProt.
+        embedding_distance: Distance metric between Pfam and UniProt embeddings.
+    """
     def __init__(self, id: int, pfam_id: str, uniprot_id: str, pfam_embedding, uniprot_embedding, refSeqAccession, entry, entryName, proteinNames, geneNames, organism, pfam_description,uniprot_function, embedding_distance):
         self.id = id
         self.pfam_id = pfam_id
@@ -17,6 +36,7 @@ class AnnotationData:
         self.embedding_distance = embedding_distance
         
     def __repr__(self):
+        """Returns a string representation of the AnnotationData object."""
         return (f"AnnotationData("
                 f"id={self.id}, "
                 f"pfam_id='{self.pfam_id}', "
@@ -33,6 +53,7 @@ class AnnotationData:
                 f"uniprot_function='{self.uniprot_function}')")
         
     def to_dict(self):
+        """Converts the AnnotationData object into a dictionary."""
         return {
             "id": self.id,
             "pfam_id": self.pfam_id,
@@ -51,6 +72,7 @@ class AnnotationData:
         }
         
     def cleanAnnotations(self):
+        """Cleans annotation descriptions by removing excess whitespace."""
         #remove leading/trailing whitespaces
         self.pfam_description = self.pfam_description.strip()
         
@@ -58,6 +80,26 @@ class AnnotationData:
         self.pfam_description = ' '.join(self.pfam_description.split())
 
 class EvaluatedData:
+    """
+    Stores statistical evaluations of annotation data, such as counts and lengths of annotations.
+    
+    Attributes:
+        no_sequences (int): Number of sequences analyzed.
+        uniprot_annotation_amount (int): Count of UniProt annotations.
+        uniprot_annotation_length_min (int): Minimum length of UniProt annotations.
+        uniprot_annotation_length_max (int): Maximum length of UniProt annotations.
+        uniprot_annotation_length_avg (int): Average length of UniProt annotations.
+        uniprot_annotation_no_words (int): Number of words in UniProt annotations.
+        uniprot_annotation_missing_amount (int): Number of missing UniProt annotations.
+        uniprot_annotation_missing_percent (float): Percentage of missing UniProt annotations.
+        pfam_annotation_amount (int): Count of Pfam annotations.
+        pfam_annotation_length_min (int): Minimum length of Pfam annotations.
+        pfam_annotation_length_max (int): Maximum length of Pfam annotations.
+        pfam_annotation_length_avg (int): Average length of Pfam annotations.
+        pfam_annotation_no_words (int): Number of words in Pfam annotations.
+        pfam_annotation_missing_amount (int): Number of missing Pfam annotations.
+        pfam_annotation_missing_percent (float): Percentage of missing Pfam annotations.
+    """
     def __init__(self):
         self.no_sequences = 0
         self.uniprot_annotation_amount = 0
@@ -76,6 +118,7 @@ class EvaluatedData:
         self.pfam_annotation_missing_percent = 0
 
     def print_data(self):
+        """Prints a formatted summary of the evaluation data."""
         print("Evaluated Data:")
         print(f"  Number of Sequences: {self.no_sequences}")
         print(f"  UniProt Annotations:")
@@ -113,6 +156,7 @@ class EvaluatedData:
         )
         
     def generateString(self):
+        """Returns a formatted string summary of the evaluation data."""
         return (
             f"Evaluated Data:\n"
             f"  Number of Sequences: {self.no_sequences}\n"

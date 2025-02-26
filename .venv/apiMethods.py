@@ -10,6 +10,14 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("BioBERT")
 
 def get_uniprot_annotation(protein_id):
+    """Fetches UniProt annotation for a given protein ID.
+
+    Args:
+        protein_id (str): The UniProt ID of the protein.
+
+    Returns:
+        tuple: (protein_name, function, pfam_id), or (None, None, None) if retrieval fails.
+    """
     url = f"https://www.uniprot.org/uniprotkb/{protein_id}.txt"
     try:
         response = requests.get(url)
@@ -42,6 +50,14 @@ def get_uniprot_annotation(protein_id):
         return None, None, None
 
 def get_pfam_annotation(protein_id):
+    """Fetches Pfam annotation for a given protein ID.
+
+    Args:
+        protein_id (str): The Pfam ID of the protein.
+
+    Returns:
+        str: The Pfam description, or None if retrieval fails.
+    """
     api_url = "https://www.ebi.ac.uk/interpro/api"
     url = f"{api_url}/entry/pfam/{protein_id}"
     url += "?page_size=200"
@@ -64,42 +80,17 @@ def get_pfam_annotation(protein_id):
     else:
         return None
 
-#no longer in use, but we might need it
-'''
-def annotate_tsv(tsv_file):
-    df = read_tsv(tsv_file)
-    annotated_data = []
-    counter = 0
-    total = 0
-
-    if df is not None:
-        total = len(df)
-        for protein_id in df.iloc[:, 1]:
-            print("\r" + str(counter / total) + "% " + str(counter) + "/" + str(total))
-            
-            protein_name, function, pfamID = get_uniprot_annotation(protein_id)
-            pfamAnnotation = get_pfam_annotation(pfamID)
-
-            annotated_data.append({
-                'Protein_ID': protein_id,
-                'Pfam_ID':pfamID,
-                'Protein_Name': protein_name,
-                'Unitprot_Function': function,
-                'Pfam_Description': pfamAnnotation,
-                'RefSeq':df.iloc[counter,0],
-                'Entry':df.iloc[counter,1],
-                'Entry_Name':df.iloc[counter,3],
-                'Protein_Name':df.iloc[counter,4],
-                'Gene_Names':df.iloc[counter,5],
-                'Organism':df.iloc[counter,6],
-                
-            })
-            counter += 1
-            #print((protein_id or 'NA') + " " + (pfamID or 'NA') + " " + (protein_name or 'NA') + " " + (function or 'NA') + " " + (pfamAnnotation or 'NA'))
-    return pd.DataFrame(annotated_data)
-'''
 
 def annotate_data(annotationData, showProgress = False):
+    """Annotates data with UniProt and Pfam information.
+
+    Args:
+        annotationData (list): List of annotation objects.
+        showProgress (bool, optional): Whether to show progress. Defaults to False.
+
+    Returns:
+        list: Annotated data.
+    """
     counter = 0
     total = len(annotationData)
 
@@ -123,7 +114,16 @@ def annotate_data(annotationData, showProgress = False):
     return annotationData
     
 def getUniProtConversion(ffrom,to,refseqIds):
+    """Converts identifiers using UniProt ID mapping service.
 
+    Args:
+        ffrom (str): Source database.
+        to (str): Target database.
+        refseqIds (list): List of RefSeq IDs.
+
+    Returns:
+        list: Mapped annotation data.
+    """
     ids = ",".join(refseqIds)
     url = "https://rest.uniprot.org/idmapping/run"
     data = {
@@ -158,8 +158,6 @@ def getUniProtConversion(ffrom,to,refseqIds):
     print("job done")
     #put UniprotIds into annotationData 
     result = []
-    #for entry in response.json()["results"]:
-    #   result.append(AnnotationData("","",entry["to"],"","",entry["from"],"","","","","","",""))
     
     # Base URL for the UniProt API
     base_url = "https://rest.uniprot.org/idmapping/results/"

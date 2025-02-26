@@ -6,7 +6,16 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("BioBERT")
 
 def getEmbeddings(annotationData, modelName = "dmis-lab/biobert-base-cased-v1.1", mode="pfam"):
-
+    """Generates BioBERT embeddings for annotation data.
+    
+    Args:
+        annotationData (list): List of annotationData objects.
+        modelName (str, optional): The BioBERT model to use. Defaults to "dmis-lab/biobert-base-cased-v1.1".
+        mode (str, optional): Annotation mode, either "pfam" or "uniprot". Defaults to "pfam".
+    
+    Returns:
+        list: annotationData with added embeddings.
+    """
     # Load BioBERT model and tokenizer
     tokenizer = AutoTokenizer.from_pretrained(modelName)
     model = AutoModel.from_pretrained(modelName)

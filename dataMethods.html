@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module dataMethods</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title">dataMethods</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Csebastianrossboeck%5Cdesktop%5Cbiobert4%5C.venv%5Cdatamethods.py">c:\users\sebastianrossboeck\desktop\biobert4\.venv\datamethods.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="Bio.SeqIO.html">Bio.SeqIO</a><br>
+<a href="configparser.html">configparser</a><br>
+</td><td class="multicolumn"><a href="logging.html">logging</a><br>
+<a href="os.html">os</a><br>
+</td><td class="multicolumn"><a href="pandas.html">pandas</a><br>
+<a href="requests.html">requests</a><br>
+</td><td class="multicolumn"><a href="time.html">time</a><br>
+</td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-can_save_file"><strong>can_save_file</strong></a>(file_path)</dt><dd><span class="code">Checks&nbsp;whether&nbsp;a&nbsp;file&nbsp;can&nbsp;be&nbsp;saved&nbsp;in&nbsp;the&nbsp;specified&nbsp;directory.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;file_path&nbsp;(str):&nbsp;Path&nbsp;to&nbsp;the&nbsp;file.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;bool:&nbsp;True&nbsp;if&nbsp;the&nbsp;file&nbsp;can&nbsp;be&nbsp;saved,&nbsp;False&nbsp;otherwise.</span></dd></dl>
+ <dl><dt><a name="-configIsValid"><strong>configIsValid</strong></a>(config)</dt><dd><span class="code">Validates&nbsp;the&nbsp;configuration&nbsp;by&nbsp;checking&nbsp;if&nbsp;files&nbsp;can&nbsp;be&nbsp;written&nbsp;to&nbsp;specified&nbsp;paths.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;config&nbsp;(dict):&nbsp;Dictionary&nbsp;containing&nbsp;file&nbsp;paths&nbsp;from&nbsp;the&nbsp;configuration.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;bool:&nbsp;True&nbsp;if&nbsp;all&nbsp;paths&nbsp;are&nbsp;writable,&nbsp;False&nbsp;otherwise.</span></dd></dl>
+ <dl><dt><a name="-evaluateData"><strong>evaluateData</strong></a>(annotationData)</dt><dd><span class="code">Evaluates&nbsp;annotation&nbsp;data&nbsp;to&nbsp;compute&nbsp;statistics&nbsp;on&nbsp;Pfam&nbsp;and&nbsp;UniProt&nbsp;annotations.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;annotationData&nbsp;(list[AnnotationData]):&nbsp;A&nbsp;list&nbsp;of&nbsp;annotation&nbsp;data&nbsp;objects.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;EvaluatedData:&nbsp;An&nbsp;object&nbsp;containing&nbsp;statistical&nbsp;analysis&nbsp;of&nbsp;the&nbsp;annotation&nbsp;data.</span></dd></dl>
+ <dl><dt><a name="-getAnnotations"><strong>getAnnotations</strong></a>(annotationData, outputFilePath)</dt><dd><span class="code">Annotates&nbsp;data&nbsp;using&nbsp;an&nbsp;external&nbsp;method&nbsp;and&nbsp;saves&nbsp;the&nbsp;results&nbsp;to&nbsp;a&nbsp;TSV&nbsp;file.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;annotationData&nbsp;(list[AnnotationData]):&nbsp;A&nbsp;list&nbsp;of&nbsp;annotation&nbsp;data&nbsp;objects.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;outputFilePath&nbsp;(str):&nbsp;Path&nbsp;to&nbsp;save&nbsp;the&nbsp;annotated&nbsp;data.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;list[AnnotationData]:&nbsp;The&nbsp;updated&nbsp;annotation&nbsp;data&nbsp;list.</span></dd></dl>
+ <dl><dt><a name="-loadAnnotations"><strong>loadAnnotations</strong></a>(filePath)</dt><dd><span class="code">Loads&nbsp;annotation&nbsp;data&nbsp;from&nbsp;a&nbsp;TSV&nbsp;file&nbsp;and&nbsp;converts&nbsp;it&nbsp;into&nbsp;a&nbsp;list&nbsp;of&nbsp;AnnotationData&nbsp;objects.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;filePath&nbsp;(str):&nbsp;Path&nbsp;to&nbsp;the&nbsp;TSV&nbsp;file&nbsp;containing&nbsp;annotation&nbsp;data.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;list[AnnotationData]:&nbsp;A&nbsp;list&nbsp;of&nbsp;AnnotationData&nbsp;objects&nbsp;parsed&nbsp;from&nbsp;the&nbsp;file.</span></dd></dl>
+ <dl><dt><a name="-load_ids_fasta"><strong>load_ids_fasta</strong></a>(fasta_file)</dt><dd><span class="code">Loads&nbsp;sequence&nbsp;IDs&nbsp;from&nbsp;a&nbsp;FASTA&nbsp;file.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;fasta_file&nbsp;(str):&nbsp;Path&nbsp;to&nbsp;the&nbsp;FASTA&nbsp;file.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;list[str]:&nbsp;A&nbsp;list&nbsp;of&nbsp;sequence&nbsp;IDs&nbsp;from&nbsp;the&nbsp;FASTA&nbsp;file.</span></dd></dl>
+ <dl><dt><a name="-read_config"><strong>read_config</strong></a>(filePath='biobert.ini')</dt><dd><span class="code">Reads&nbsp;a&nbsp;configuration&nbsp;file&nbsp;and&nbsp;extracts&nbsp;relevant&nbsp;settings.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;filePath&nbsp;(str,&nbsp;optional):&nbsp;Path&nbsp;to&nbsp;the&nbsp;configuration&nbsp;file.&nbsp;Defaults&nbsp;to&nbsp;'biobert.ini'.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dict:&nbsp;A&nbsp;dictionary&nbsp;containing&nbsp;configuration&nbsp;values.</span></dd></dl>
+ <dl><dt><a name="-read_tsv"><strong>read_tsv</strong></a>(file_path)</dt><dd><span class="code">Reads&nbsp;a&nbsp;TSV&nbsp;file&nbsp;and&nbsp;returns&nbsp;its&nbsp;contents&nbsp;as&nbsp;a&nbsp;Pandas&nbsp;DataFrame.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;file_path&nbsp;(str):&nbsp;Path&nbsp;to&nbsp;the&nbsp;TSV&nbsp;file.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pd.DataFrame&nbsp;or&nbsp;None:&nbsp;The&nbsp;DataFrame&nbsp;containing&nbsp;file&nbsp;data,&nbsp;or&nbsp;None&nbsp;if&nbsp;an&nbsp;error&nbsp;occurs.</span></dd></dl>
+ <dl><dt><a name="-saveAnnotations"><strong>saveAnnotations</strong></a>(annotationData, outputFilePath)</dt><dd><span class="code">Saves&nbsp;annotation&nbsp;data&nbsp;to&nbsp;a&nbsp;TSV&nbsp;file.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;annotationData&nbsp;(list[AnnotationData]):&nbsp;A&nbsp;list&nbsp;of&nbsp;annotation&nbsp;data&nbsp;objects.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;outputFilePath&nbsp;(str):&nbsp;Path&nbsp;to&nbsp;save&nbsp;the&nbsp;data.</span></dd></dl>
+ <dl><dt><a name="-writeToFile"><strong>writeToFile</strong></a>(input, outputfile)</dt><dd><span class="code">Writes&nbsp;a&nbsp;string&nbsp;to&nbsp;a&nbsp;file.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;input&nbsp;(str):&nbsp;The&nbsp;content&nbsp;to&nbsp;be&nbsp;written.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;outputfile&nbsp;(str):&nbsp;Path&nbsp;to&nbsp;the&nbsp;output&nbsp;file.</span></dd></dl>
+</td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+    
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>logger</strong> = &lt;Logger BioBERT (INFO)&gt;</td></tr></table>
+</body></html>
