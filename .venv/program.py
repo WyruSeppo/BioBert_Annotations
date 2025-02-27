@@ -3,6 +3,7 @@ from apiMethods import *
 from bertMethods import *
 import logging
 import numpy as np
+import matplotlib.pyplot as plt
 
 def main():
     """Executes the BioBERT annotation similarity workflow.
@@ -128,14 +129,30 @@ def main():
 
     saveAnnotations(annotationData, CONFIG["annotation_embedding_file_output"])
 
-    #5.1evaluate Embedding-Distances
-    #distances = [item.embedding_distance for item in annotationData]
-    #min_distance = min(distances)
-    #max_distance = max(distances)
-    #avg_distance = sum(distances) / len(distances) if distances else 0 
+    #5.1 evaluate Embedding-Distances
+    distances = [item.embedding_distance for item in annotationData]
+    min_distance = min(distances)
+    max_distance = max(distances)
+    avg_distance = sum(distances) / len(distances) if distances else 0 
+
+    #show histogram
+    plt.figure(figsize=(8, 5))
+    plt.hist(distances, bins=50, edgecolor="black", alpha=0.75)
+    plt.xlabel("Cosine Distance")
+    plt.ylabel("Frequency")
+    plt.title("Distribution of Cosine Distances")
+    plt.xlim(0, 2) 
+    plt.grid(axis="y", linestyle="--", alpha=0.7)
+    
+    plt.text(2, plt.ylim()[1] * 0.9, f"Min: {min_distance:.3f}", fontsize=10)
+    plt.text(2, plt.ylim()[1] * 0.85, f"Max: {max_distance:.3f}", fontsize=10)
+    plt.text(2, plt.ylim()[1] * 0.8, f"Avg: {avg_distance:.3f}", fontsize=10)
+
+    plt.show()
+    
 
     #visualize encoding data
     print("BioBert Annotation Similarity v1 End")
     
-    if __name__ == "__main__":
-        main()
+if __name__ == "__main__":
+    main()
