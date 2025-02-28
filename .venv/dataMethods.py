@@ -291,6 +291,8 @@ def read_config(filePath='biobert.ini'):
     getPfamEmbeddings = config.getboolean('General','getPfamEmbeddings')
     getUniProtEmbeddings = config.getboolean('General','getUniProtEmbeddings')
     model = config.get('General','model')
+    distances_plot_output = config.get('General','distances_plot_output')
+    tsne_plot_output = config.get('General','tsne_plot_output')
 
 
     # Return a dictionary with the retrieved values
@@ -304,7 +306,9 @@ def read_config(filePath='biobert.ini'):
         'loadAnnotationsFromFile' : loadAnnotationsFromFile,
         'getPfamEmbeddings' : getPfamEmbeddings,
         'getUniProtEmbeddings' : getUniProtEmbeddings,
-        'model' : model
+        'model' : model,
+        'distances_plot_output' : distances_plot_output,
+        'tsne_plot_output' : tsne_plot_output
     }
 
     return config_values

@@ -4,6 +4,9 @@ from bertMethods import *
 import logging
 import numpy as np
 import matplotlib.pyplot as plt
+import plotly.express as px
+from sklearn.manifold import TSNE
+from sklearn.cluster import KMeans
 
 def main():
     """Executes the BioBERT annotation similarity workflow.
@@ -135,7 +138,7 @@ def main():
     max_distance = max(distances)
     avg_distance = sum(distances) / len(distances) if distances else 0 
 
-    #show histogram
+    #5.2 show histogram
     plt.figure(figsize=(8, 5))
     plt.hist(distances, bins=50, edgecolor="black", alpha=0.75)
     plt.xlabel("Cosine Distance")
@@ -147,11 +150,86 @@ def main():
     plt.text(2, plt.ylim()[1] * 0.9, f"Min: {min_distance:.3f}", fontsize=10)
     plt.text(2, plt.ylim()[1] * 0.85, f"Max: {max_distance:.3f}", fontsize=10)
     plt.text(2, plt.ylim()[1] * 0.8, f"Avg: {avg_distance:.3f}", fontsize=10)
-
-    plt.show()
+    plt.savefig(CONFIG["distances_plot_output"])
+        
     
+    #6 visualize encoding data
+        
+    # File path
+    file_path = CONFIG["annotation_embedding_file_output"]
 
-    #visualize encoding data
+    # Load the file (Tab-separated)
+    df = pd.read_csv(file_path, sep="\t")
+
+    # Extract relevant columns
+    pfam_embeddings = []
+    uniprot_embeddings = []
+    labels = []
+    proteins = []
+
+    for index, row in df.iterrows():
+        try:
+            # Convert embeddings from strings to NumPy arrays
+            pfam_vector = np.array([float(x) for x in str(row["pfam_embedding"]).split()])
+            uniprot_vector = np.array([float(x) for x in str(row["uniprot_embedding"]).split()])
+
+            # Use only complete embeddings
+            if pfam_vector.size > 0:
+                pfam_embeddings.append(pfam_vector)
+                labels.append(str(row["uniprot_function"])[:30])  # Limit label length
+                proteins.append(str(row["protein_names"]))
+
+            if uniprot_vector.size > 0:
+                uniprot_embeddings.append(uniprot_vector)
+
+        except Exception as e:
+            print(f"Error at entry {index}: {e}")
+
+    # Convert lists to NumPy arrays
+    pfam_embeddings = np.array(pfam_embeddings)
+    uniprot_embeddings = np.array(uniprot_embeddings)
+
+    print(f"Loaded embeddings: {pfam_embeddings.shape}, {uniprot_embeddings.shape}")
+
+    # Select embeddings for t-SNE (Pfam or UniProt)
+    selected_embeddings = pfam_embeddings  # Alternatively: uniprot_embeddings
+
+    # Perform t-SNE transformation
+    tsne = TSNE(n_components=2, perplexity=30, learning_rate=200, max_iter=5000, random_state=42)
+    tsne_results = tsne.fit_transform(selected_embeddings)
+
+    # Create DataFrame for visualization
+    df_tsne = pd.DataFrame({
+        "TSNE-1": tsne_results[:, 0],
+        "TSNE-2": tsne_results[:, 1],
+        "Label": labels,
+        "Protein": proteins
+    })
+
+    # Matplotlib visualization
+    plt.figure(figsize=(12, 8))
+    plt.scatter(df_tsne["TSNE-1"], df_tsne["TSNE-2"], alpha=0.6)
+    plt.xlabel("t-SNE Dimension 1")
+    plt.ylabel("t-SNE Dimension 2")
+    plt.title("t-SNE Visualization of BioBERT Embeddings")
+    plt.savefig(CONFIG["tsne_plot_output"])
+
+    # Interactive visualization with Plotly
+    fig = px.scatter(df_tsne, x="TSNE-1", y="TSNE-2", hover_data=["Label", "Protein"], 
+                    title="t-SNE Visualization of Embeddings")
+    fig.show()
+
+    # K-Means Clustering
+    num_clusters = 5
+    kmeans = KMeans(n_clusters=num_clusters, random_state=42)
+    df_tsne["Cluster"] = kmeans.fit_predict(selected_embeddings)
+
+    # Visualization with Clustering
+    fig_cluster = px.scatter(df_tsne, x="TSNE-1", y="TSNE-2", color="Cluster", 
+                            hover_data=["Label", "Protein"], 
+                            title="t-SNE with K-Means Clustering")
+    fig_cluster.show()
+
     print("BioBert Annotation Similarity v1 End")
     
 if __name__ == "__main__":
